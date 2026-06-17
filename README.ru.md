@@ -4,6 +4,10 @@ Paper-плагин для Minecraft с базовыми командами те�
 
 [English](./README.md)
 
+## Скачать
+
+Актуальный `.jar` в [Releases](https://github.com/ByteMe6/hanafubuki-core-plugin/releases/latest).
+
 ## Команды
 
 | Команда | Описание |
@@ -19,13 +23,19 @@ Paper-плагин для Minecraft с базовыми командами те�
 - Java 21
 - Paper 1.21+
 
-## Сборка
+## Установка
+
+1. Скачай `.jar` из [Releases](https://github.com/ByteMe6/hanafubuki-core-plugin/releases/latest)
+2. Положи в папку `plugins/` сервера
+3. Перезапусти сервер
+
+## Сборка из исходников
 
 ```bash
 mvn package
 ```
 
-Скомпилированный `.jar` появится в `target/`. Перекинь его в папку `plugins/` сервера и перезапусти.
+Скомпилированный `.jar` появится в `target/`.
 
 ## Технологии
 
