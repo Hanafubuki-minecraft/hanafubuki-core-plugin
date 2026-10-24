@@ -17,6 +17,7 @@ Paper-плагин для Minecraft с базовыми командами те�
 | `/tpa <игрок>` | Отправить запрос на телепортацию |
 | `/tpaaccept` | Принять запрос на телепортацию |
 | `/tpadeny` | Отклонить запрос на телепортацию |
+| `/resources` | Телепорт в случайную безопасную точку мира ресурсов (нужен [hanafubuki-resource-world](https://github.com/Hanafubuki-minecraft/hanafubuki-resource-world)) |
 
 ## Требования
 

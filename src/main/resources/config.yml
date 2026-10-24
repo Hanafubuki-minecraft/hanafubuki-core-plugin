@@ -1,0 +1,9 @@
+# Hanafubuki core plugin
+
+resource-world:
+  # Имя мира ресурсов (как в config.yml плагина hanafubuki-resource-world → world.name)
+  world: resources
+  # Игрок появляется в случайной безопасной точке между min-radius и radius от спавна мира
+  min-radius: 200
+  radius: 3000
+  max-attempts: 12

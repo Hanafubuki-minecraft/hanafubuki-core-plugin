@@ -17,6 +17,7 @@ Grab the latest `.jar` from [Releases](https://github.com/Hanafubuki-minecraft/h
 | `/tpa <player>` | Send a teleport request to a player |
 | `/tpaaccept` | Accept an incoming teleport request |
 | `/tpadeny` | Deny an incoming teleport request |
+| `/resources` | Teleport to a random safe spot in the resource world (needs [hanafubuki-resource-world](https://github.com/Hanafubuki-minecraft/hanafubuki-resource-world)) |
 
 ## Requirements
 

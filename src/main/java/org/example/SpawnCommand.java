@@ -1,5 +1,6 @@
 package org.example;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.bukkit.boss.BarColor;
@@ -20,7 +21,7 @@ public class SpawnCommand implements CommandExecutor {
         TeleportEffects.start(
                 player,
                 plugin,
-                player.getWorld().getSpawnLocation(),
+                Bukkit.getWorlds().get(0).getSpawnLocation(),
                 "Телепортация на спавн",
                 BarColor.GREEN
         );
