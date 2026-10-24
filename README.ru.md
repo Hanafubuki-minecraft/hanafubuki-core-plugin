@@ -6,7 +6,7 @@ Paper-плагин для Minecraft с базовыми командами те�
 
 ## Скачать
 
-Актуальный `.jar` в [Releases](https://github.com/ByteMe6/hanafubuki-core-plugin/releases/latest).
+Актуальный `.jar` в [Releases](https://github.com/Hanafubuki-minecraft/hanafubuki-core-plugin/releases/latest).
 
 ## Команды
 
@@ -25,7 +25,7 @@ Paper-плагин для Minecraft с базовыми командами те�
 
 ## Установка
 
-1. Скачай `.jar` из [Releases](https://github.com/ByteMe6/hanafubuki-core-plugin/releases/latest)
+1. Скачай `.jar` из [Releases](https://github.com/Hanafubuki-minecraft/hanafubuki-core-plugin/releases/latest)
 2. Положи в папку `plugins/` сервера
 3. Перезапусти сервер
 

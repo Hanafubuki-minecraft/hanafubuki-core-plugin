@@ -6,7 +6,7 @@ A Paper Minecraft plugin providing essential teleportation commands for survival
 
 ## Download
 
-Grab the latest `.jar` from [Releases](https://github.com/ByteMe6/hanafubuki-core-plugin/releases/latest).
+Grab the latest `.jar` from [Releases](https://github.com/Hanafubuki-minecraft/hanafubuki-core-plugin/releases/latest).
 
 ## Commands
 
@@ -25,7 +25,7 @@ Grab the latest `.jar` from [Releases](https://github.com/ByteMe6/hanafubuki-cor
 
 ## Installation
 
-1. Download the `.jar` from [Releases](https://github.com/ByteMe6/hanafubuki-core-plugin/releases/latest)
+1. Download the `.jar` from [Releases](https://github.com/Hanafubuki-minecraft/hanafubuki-core-plugin/releases/latest)
 2. Drop it into your server's `plugins/` folder
 3. Restart the server
 
