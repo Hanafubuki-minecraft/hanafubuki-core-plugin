@@ -21,6 +21,10 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(visibility, this);
         getServer().getPluginManager().registerEvents(new JoinQuitListener(this), this);
         getServer().getPluginManager().registerEvents(new SakuraCreepers(this), this);
+        getServer().getPluginManager().registerEvents(new ChatStyle(this), this);
+        Guide guide = new Guide(this);
+        getServer().getPluginManager().registerEvents(guide, this);
+        guide.hookAuthMe();
         gameRules = new GameRuleSync(this);
         getServer().getPluginManager().registerEvents(gameRules, this);
         // миры уже загружены к этому моменту — синхронизируем после старта
@@ -39,6 +43,8 @@ public class Main extends JavaPlugin {
         WhisperCommand reply = new WhisperCommand(this, true);
         Commands.register(this, "reply", "Reply to the last private message", null, List.of("r"), reply, reply);
 
+        Commands.register(this, "guide", "The Hanafubuki guide book", null, List.of("rules", "правила", "книга"),
+                guide, (snd, c, l, a) -> List.of());
         Commands.register(this, "admin", "Hanafubuki admin: reload, version", "hanafubuki.admin", List.of("hf"),
                 new AdminCommand(this), new AdminCommand(this));
 

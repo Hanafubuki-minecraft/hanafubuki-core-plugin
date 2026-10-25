@@ -52,6 +52,25 @@ admin:
 gamerules:
   synced: "<muted>Правило <text><rule> = <value></text> действует во всех мирах <dim>(<count>/<total>)</dim>.</muted>"
 
+# Общий чат. <name> — ник, <bedrock> — отметка для Bedrock-игроков, <message> — сообщение
+chat:
+  format: "<click:suggest_command:'/msg <name> '><hover:show_text:'<muted>Написать <text><name></text> в личку'><bedrock><text><name></text></hover></click> <dim>›</dim> <text><message></text>"
+  bedrock-mark: "<dim>◇</dim> "
+
+# Книга новичка. Страница — до ~14 строк по ~19 символов. Ссылки: <click:open_url:'https://…'>
+guide:
+  title: "Hanafubuki"
+  author: "Hanafubuki"
+  given-first: "<muted>Книга новичка у тебя в инвентаре — открой, если что-то забудешь. Снова получить: <text>/guide</text>.</muted>"
+  given: "<muted>Держи книгу новичка.</muted>"
+  pages:
+    - "<accent><symbol> Hanafubuki</accent>\n<dim>花吹雪 — метель\nиз лепестков сакуры</dim>\n\n<text>Добро пожаловать!</text>\n\n<muted>Здесь уютный\nvanilla+ мир: всё как\nв обычном Minecraft,\nтолько удобнее.\n\nЛистай — тут всё\nсамое главное.</muted>"
+    - "<accent>Правила</accent>\n\n<text>1.</text> <muted>Не ломай и не\nбери чужое.</muted>\n<text>2.</text> <muted>Без читов, X-ray\nи дюпов.</muted>\n<text>3.</text> <muted>Уважай других\nигроков.</muted>\n<text>4.</text> <muted>Не строй фермы,\nкоторые кладут\nсервер.</muted>\n\n<dim>Все действия\nзаписываются\nи откатываются.</dim>"
+    - "<accent>Как ходить</accent>\n\n<text>/spawn</text>\n<muted>на спавн</muted>\n<text>/home</text>\n<muted>к своей кровати</muted>\n<text>/tpa [ник]</text>\n<muted>попроситься к игроку</muted>\n<text>/tpaaccept</text>\n<muted>принять запрос</muted>\n\n<dim>Перед телепортом\nпостой 2 секунды.</dim>"
+    - "<accent>Мир ресурсов</accent>\n\n<muted>Копай там, а не\nв основном мире —\nпусть он остаётся\nкрасивым.</muted>\n\n<text>/resources</text>\n<muted>или вишнёвая арка\nна спавне.</muted>\n\n<dim>Мир обновляется\nраз в месяц — не\nоставляй там вещи.</dim>"
+    - "<accent>Карта</accent>\n\n<muted>Весь мир на сайте:</muted>\n<click:open_url:'http://91.214.31.132:8123'><text><u>открыть карту</u></text></click>\n\n<text>/marker add [имя]</text>\n<muted>отметить своё место\nна карте</muted>\n\n<accent>Общение</accent>\n<text>/msg [ник]</text> <muted>—</muted>\n<muted>личное сообщение</muted>\n<text>/r</text> <muted>— ответить</muted>"
+    - "<accent>Ещё</accent>\n\n<text>/help</text>\n<muted>все команды</muted>\n<text>/sit</text> <muted>· </muted><text>/lay</text>\n<muted>сесть, лечь</muted>\n<text>/trigger ch_toggle</text>\n<muted>координаты\nна экране</muted>\n\n<accent>Хорошей игры!</accent> <symbol>"
+
 join: "<dim><accent><symbol></accent> <name> заходит на сервер</dim>"
 first-join: "<accent><symbol> Встречайте <text><name></text> — впервые на Hanafubuki!</accent>"
 quit: "<dim><symbol> <name> покидает сервер</dim>"
@@ -74,6 +93,9 @@ help:
   other: "Другое"
   # Разделы по порядку. В commands — имена команд (для команд этого плагина — их id из config.yml → commands)
   groups:
+    start:
+      title: "Начало"
+      commands: [guide]
     teleport:
       title: "Телепорт"
       commands: [spawn, home, tpa, tpaaccept, tpadeny, resources, rwtime]
@@ -97,6 +119,7 @@ help:
     changepassword: "/changepassword [старый] [новый]"
   # Описания (иначе — описание из самого плагина)
   desc:
+    guide: "книга новичка: правила и подсказки"
     spawn: "на спавн"
     home: "домой, к своей кровати"
     tpa: "попроситься к игроку"

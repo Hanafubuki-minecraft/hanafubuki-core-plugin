@@ -73,3 +73,8 @@ With a configurable chance (`config.yml` → `sakura-creepers.chance`, default 2
 ## Gamerule sync
 
 All worlds share the same gamerules (`config.yml` → `gamerule-sync`, on by default): on startup the main world's rules are copied everywhere, a `/gamerule` change in any world is applied to all worlds, and newly loaded worlds (e.g. a reset resource world) get them immediately. Event-driven only — no background load.
+
+## Chat and guide book
+
+- Public chat in the server style: `Name › message`, clicking a name suggests `/msg`, Bedrock players are marked (`messages.yml` → `chat`, `config.yml` → `chat.style`).
+- New players get the guide book after logging in (AuthMe-aware) and it opens automatically; `/guide` (`/rules`) gives it again. Pages are MiniMessage in `messages.yml` → `guide.pages`.

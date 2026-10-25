@@ -70,6 +70,11 @@ public final class Msg {
         return MM.deserialize(raw(key), withStyle(r));
     }
 
+    /** Разбор с другой палитрой (например, тёмной для страниц книги). */
+    public static Component parseWithStyle(String text, TagResolver palette) {
+        return MM.deserialize(text, palette);
+    }
+
     public static Component parse(String text, TagResolver... r) {
         return MM.deserialize(text, withStyle(r));
     }

@@ -59,6 +59,26 @@ help:
 chat:
   # Сообщения о входе и выходе в стиле сервера (тексты — в messages.yml → join / first-join / quit)
   join-quit: true
+  # Общий чат в стиле сервера: «Ник › текст», клик по нику — /msg (формат — messages.yml → chat)
+  style: true
+
+guide:
+  # Книга новичка (тексты — messages.yml → guide). Снова получить — /guide
+  give-on-first-join: true
+  # Сразу открыть книгу при первом входе (после входа в AuthMe)
+  open-on-first-join: true
+  # Положить книгу в инвентарь
+  put-in-inventory: true
+  # Палитра страниц книги: страницы бежевые, поэтому цвета тёмные (те же теги, что и в чате)
+  style:
+    symbol: "❀"
+    accent: "#B5426F"
+    text: "#3A2833"
+    muted: "#5E4B57"
+    dim: "#8A7883"
+    success: "#3F7A4E"
+    error: "#A8344A"
+    gold: "#9A6B12"
 
 sakura-creepers:
   # С этим шансом крипер вместо взрыва рассыпается облаком лепестков сакуры — без урона и разрушений
@@ -91,6 +111,7 @@ commands:
   msg:       { enabled: true, name: msg,       aliases: [tell, w, whisper, m, pm] }
   reply:     { enabled: true, name: reply,     aliases: [r] }
   # админ-команда: /hanafubuki reload — перечитать конфиг и тексты без рестарта
+  guide:     { enabled: true, name: guide,     aliases: [rules, правила, книга] }
   admin:     { enabled: true, name: hanafubuki, aliases: [hf] }
 
 # Palette of all messages (MiniMessage tags in messages.yml: <accent> <text> <muted> <dim> <success> <error> <gold>, <symbol>)
