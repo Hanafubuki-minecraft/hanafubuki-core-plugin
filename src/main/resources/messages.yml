@@ -6,10 +6,10 @@
 prefix: "<accent><symbol></accent> "
 
 teleport:
-  bar-spawn: "<accent>❀</accent> <text>На спавн</text>"
-  bar-home: "<accent>❀</accent> <text>Домой</text>"
-  bar-resources: "<accent>❀</accent> <text>В мир ресурсов</text>"
-  bar-tpa: "<accent>❀</accent> <text>К <name></text>"
+  bar-spawn: "<accent><symbol></accent> <text>На спавн</text>"
+  bar-home: "<accent><symbol></accent> <text>Домой</text>"
+  bar-resources: "<accent><symbol></accent> <text>В мир ресурсов</text>"
+  bar-tpa: "<accent><symbol></accent> <text>К <name></text>"
   done: "<muted>Готово — ты на месте.</muted>"
   cancelled: "<error>Телепорт отменён — ты сошёл с места.</error>"
 
@@ -44,9 +44,9 @@ whisper:
   to: "<accent>✉ ты → <name></accent> <dim>·</dim> <text><text></text>"
   from: "<click:suggest_command:'/r '><hover:show_text:'<muted>Ответить'><accent>✉ <name> → тебе</accent> <dim>·</dim> <text><text></text></hover></click>"
 
-join: "<dim><accent>❀</accent> <name> заходит на сервер</dim>"
-first-join: "<accent>❀ Встречайте <text><name></text> — впервые на Hanafubuki!</accent>"
-quit: "<dim>❀ <name> покидает сервер</dim>"
+join: "<dim><accent><symbol></accent> <name> заходит на сервер</dim>"
+first-join: "<accent><symbol> Встречайте <text><name></text> — впервые на Hanafubuki!</accent>"
+quit: "<dim><symbol> <name> покидает сервер</dim>"
 
 unknown-command: "<error>Неизвестная команда. Список доступных — <text>/help</text>.</error>"
 
