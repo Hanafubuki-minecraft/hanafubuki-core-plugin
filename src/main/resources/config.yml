@@ -29,11 +29,22 @@ hide-from-non-ops:
     - placeholderapi
     - tab
     - btab
+    # AuthMe: подтверждение по почте/коду
+    - verification
+    # Floodgate: связка Java/Bedrock-аккаунтов (с паролями AuthMe не нужна)
+    - linkaccount
+    - unlinkaccount
+    # ванильный чат scoreboard-команд — у игроков нет команд
+    - teammsg
+    - tm
     # прочее
     - toggleplace
     - none
   # Прятать команды с префиксом: minecraft:give, bukkit:plugins, paper:… и т.п.
   namespaced: true
+  # Встроенный список по умолчанию добавляется к твоему (новые версии плагина могут его дополнять).
+  # false — использовать только то, что написано здесь.
+  include-defaults: true
   # Все команды этих плагинов не-опы не видят и не могут вызвать (включая //wand, //set и т.п.)
   plugins: [WorldEdit, FastAsyncWorldEdit, CoreProtect, Chunky, Geyser-Spigot, PlaceholderAPI, TAB]
 

@@ -41,8 +41,8 @@ whisper:
   self: "<muted>Себе писать не нужно.</muted>"
   no-reply: "<muted>Пока некому ответить — сначала напиши через <text>/msg</text>.</muted>"
   console-name: "Сервер"
-  to: "<accent>✉ ты → <name></accent> <dim>·</dim> <text><text></text>"
-  from: "<click:suggest_command:'/r '><hover:show_text:'<muted>Ответить'><accent>✉ <name> → тебе</accent> <dim>·</dim> <text><text></text></hover></click>"
+  to: "<accent>✉ ты → <name></accent> <dim>·</dim> <text><message></text>"
+  from: "<click:suggest_command:'/r '><hover:show_text:'<muted>Ответить'><accent>✉ <name> → тебе</accent> <dim>·</dim> <text><message></text></hover></click>"
 
 join: "<dim><accent><symbol></accent> <name> заходит на сервер</dim>"
 first-join: "<accent><symbol> Встречайте <text><name></text> — впервые на Hanafubuki!</accent>"
@@ -77,7 +77,7 @@ help:
       commands: [msg, reply, list, me]
     rest:
       title: "Отдых и вид"
-      commands: [sit, lay, crawl, bellyflop, spin, skin, trigger]
+      commands: [sit, lay, crawl, bellyflop, spin, gspin, skin, skins, trigger]
   # Как показывать команду с аргументами (иначе — просто /имя)
   usage:
     tpa: "/tpa [ник]"
@@ -107,6 +107,9 @@ help:
     bellyflop: "лечь на живот"
     spin: "покрутиться"
     skin: "сменить скин"
-    trigger: "координаты на экране и другие датапаки"
+    skins: "меню скинов"
+    gspin: "покрутиться"
+    gsit: "настройки сидения"
     changepassword: "сменить пароль"
+    trigger: "координаты на экране и другие датапаки"
     geyser: "команды для Bedrock"

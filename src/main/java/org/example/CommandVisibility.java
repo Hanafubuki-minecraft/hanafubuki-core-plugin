@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerCommandSendEvent;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -33,13 +34,21 @@ public class CommandVisibility implements Listener {
 
     public void reload() {
         Set<String> set = new HashSet<>();
-        for (String s : plugin.getConfig().getStringList("hide-from-non-ops.commands")) {
-            set.add(s.toLowerCase(Locale.ROOT).replace("/", ""));
+        // свой список из config.yml + встроенный список по умолчанию (новые версии плагина могут его дополнять)
+        List<String> mine = plugin.getConfig().getStringList("hide-from-non-ops.commands");
+        List<String> defaults = plugin.getConfig().getDefaults() == null ? List.of()
+                : plugin.getConfig().getDefaults().getStringList("hide-from-non-ops.commands");
+        for (String s : mine) set.add(s.toLowerCase(Locale.ROOT).replace("/", ""));
+        if (plugin.getConfig().getBoolean("hide-from-non-ops.include-defaults", true)) {
+            for (String s : defaults) set.add(s.toLowerCase(Locale.ROOT).replace("/", ""));
         }
         hidden = set;
         hideNamespaced = plugin.getConfig().getBoolean("hide-from-non-ops.namespaced", true);
         Set<String> plugins = new HashSet<>();
         for (String s : plugin.getConfig().getStringList("hide-from-non-ops.plugins")) plugins.add(s.toLowerCase(Locale.ROOT));
+        if (plugin.getConfig().getBoolean("hide-from-non-ops.include-defaults", true) && plugin.getConfig().getDefaults() != null) {
+            for (String s : plugin.getConfig().getDefaults().getStringList("hide-from-non-ops.plugins")) plugins.add(s.toLowerCase(Locale.ROOT));
+        }
         hiddenPlugins = plugins;
         customHelp = plugin.getConfig().getBoolean("help.enabled", true);
     }

@@ -60,8 +60,8 @@ public class WhisperCommand implements TabExecutor {
         }
 
         String fromName = sender instanceof Player p ? p.getName() : Msg.raw("whisper.console-name");
-        sender.sendMessage(Msg.get("whisper.to", ph("name", target.getName()), ph("text", text)));
-        target.sendMessage(Msg.get("whisper.from", ph("name", fromName), ph("text", text)));
+        sender.sendMessage(Msg.get("whisper.to", ph("name", target.getName()), ph("message", text)));
+        target.sendMessage(Msg.get("whisper.from", ph("name", fromName), ph("message", text)));
         target.playSound(target, Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 0.35f, 1.7f);
         plugin.getLogger().info("[PM] " + fromName + " -> " + target.getName() + ": " + text);
 
