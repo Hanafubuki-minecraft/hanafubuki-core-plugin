@@ -43,3 +43,7 @@ mvn package
 - Java 21
 - Paper API 1.21
 - Maven + Shade plugin
+
+## Скрытые команды
+
+Обычные игроки не видят в Tab `/plugins`, `/version`, `/help` и команды с префиксом (`minecraft:give`…), а при вводе получают ванильное «неизвестная команда». Опы видят всё. Список — в `config.yml` → `hide-from-non-ops`.

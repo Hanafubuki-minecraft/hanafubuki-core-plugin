@@ -8,6 +8,10 @@ public class Main extends JavaPlugin {
     public void onEnable() {
 
         saveDefaultConfig();
+        getConfig().options().copyDefaults(true);
+        saveConfig();
+
+        getServer().getPluginManager().registerEvents(new CommandVisibility(this), this);
 
         getCommand("spawn").setExecutor(new SpawnCommand(this));
         getCommand("home").setExecutor(new HomeCommand(this));

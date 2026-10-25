@@ -7,3 +7,18 @@ resource-world:
   min-radius: 200
   radius: 3000
   max-attempts: 12
+
+hide-from-non-ops:
+  # Эти команды не-опы не видят в Tab, а при вводе получают «неизвестная команда». Опы видят всё.
+  # Остальные админские команды и так защищены правами — Paper сам прячет их от тех, у кого прав нет.
+  commands:
+    - plugins
+    - pl
+    - version
+    - ver
+    - about
+    - icanhasbukkit
+    - help
+    - "?"
+  # Прятать команды с префиксом: minecraft:give, bukkit:plugins, paper:… и т.п.
+  namespaced: true
