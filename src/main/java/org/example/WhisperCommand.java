@@ -75,8 +75,6 @@ public class WhisperCommand implements TabExecutor {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
         if (reply || args.length != 1) return List.of();
-        String p = args[0].toLowerCase(Locale.ROOT);
-        return Bukkit.getOnlinePlayers().stream().map(Player::getName)
-                .filter(n -> !n.equals(sender.getName()) && n.toLowerCase(Locale.ROOT).startsWith(p)).toList();
+        return null; // стандартная подсказка ников онлайн-игроков
     }
 }

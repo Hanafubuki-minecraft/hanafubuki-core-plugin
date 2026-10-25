@@ -1,7 +1,5 @@
 package org.example;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -39,12 +37,18 @@ public class CommandVisibility implements Listener {
         customHelp = plugin.getConfig().getBoolean("help.enabled", true);
     }
 
-    private static boolean isHelp(String label) {
-        String l = label.toLowerCase(Locale.ROOT);
-        return l.equals("help") || l.equals("?");
+    private Help help;
+
+    public void setHelp(Help help) {
+        this.help = help;
     }
 
-    private boolean isHidden(String label) {
+    private static boolean isHelp(String label) {
+        String l = label.toLowerCase(Locale.ROOT);
+        return l.equals(Commands.name("help")) || l.equals("help") || l.equals("?");
+    }
+
+    public boolean isHidden(String label) {
         if (customHelp && isHelp(label)) return false;   // свой /help виден всем
         String l = label.toLowerCase(Locale.ROOT);
         return hidden.contains(l) || (hideNamespaced && l.contains(":"));
@@ -67,14 +71,16 @@ public class CommandVisibility implements Listener {
 
         if (customHelp && isHelp(label)) {
             e.setCancelled(true);
-            for (String line : Msg.list("help")) p.sendMessage(Msg.parse(line));
-            if (p.isOp()) Msg.line(p, "help-op");
+            String[] parts = msg.substring(1).trim().split("\\s+");
+            int page = 1;
+            if (parts.length > 1) try { page = Integer.parseInt(parts[1]); } catch (NumberFormatException ignored) { }
+            help.show(p, page);
             return;
         }
 
         if (p.isOp()) return;
         if (!isHidden(label)) return;
         e.setCancelled(true);
-        p.sendMessage(Component.translatable("command.unknown.command", TextColor.fromHexString("#FF8A9B")));
+        Msg.line(p, "unknown-command");
     }
 }

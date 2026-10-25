@@ -55,3 +55,9 @@ mvn package
 ## Тексты
 
 Все тексты — в `plugins/Hanafubuki/messages.yml` (MiniMessage), по [стилю Hanafubuki](https://github.com/Hanafubuki-minecraft/hanafubuki-brand/blob/main/STYLE.md). `/msg` (`/tell`, `/w`, `/m`) и `/r` заменяют ванильный шёпот на оформленный; сообщения о входе и выходе тоже в стиле сервера (`config.yml` → `chat.join-quit`).
+
+## Настройка: команды и стиль
+
+- `config.yml` → `commands`: переименовать любую команду, поменять алиасы или выключить (после рестарта).
+- `config.yml` → `style`: палитра сообщений и символ префикса. Тексты в `messages.yml` используют смысловые теги — `<accent>`, `<text>`, `<muted>`, `<dim>`, `<success>`, `<error>`, `<gold>`, `<symbol>` — поэтому перекрасить всё можно одной правкой.
+- `/help` показывает только команды, которые игрок реально может выполнить (опы видят всё), по разделам и со страницами; разделы, аргументы и описания — в `messages.yml` → `help`.

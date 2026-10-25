@@ -55,3 +55,9 @@ Non-op players don't see `/plugins`, `/version` and namespaced commands (`minecr
 ## Messages
 
 All texts live in `plugins/Hanafubuki/messages.yml` (MiniMessage) and follow the [Hanafubuki text style](https://github.com/Hanafubuki-minecraft/hanafubuki-brand/blob/main/STYLE.md). `/msg` (`/tell`, `/w`, `/m`) and `/r` replace the vanilla whisper with a styled one; join and quit messages are styled too (`config.yml` → `chat.join-quit`).
+
+## Configuration: commands and style
+
+- `config.yml` → `commands`: rename any command, change aliases or disable it (restart to apply).
+- `config.yml` → `style`: the message palette and prefix symbol. Texts in `messages.yml` use semantic tags — `<accent>`, `<text>`, `<muted>`, `<dim>`, `<success>`, `<error>`, `<gold>`, `<symbol>` — so recoloring everything is one edit.
+- `/help` lists only the commands the player can actually run (ops see everything), grouped and paged; groups, usages and descriptions are in `messages.yml` → `help`.

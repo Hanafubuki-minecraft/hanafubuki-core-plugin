@@ -2,6 +2,8 @@ package org.example;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.List;
+
 public class Main extends JavaPlugin {
 
     @Override
@@ -12,24 +14,24 @@ public class Main extends JavaPlugin {
         saveConfig();
         Msg.load(this);
 
-        getServer().getPluginManager().registerEvents(new CommandVisibility(this), this);
+        CommandVisibility visibility = new CommandVisibility(this);
+        getServer().getPluginManager().registerEvents(visibility, this);
         getServer().getPluginManager().registerEvents(new JoinQuitListener(this), this);
 
-        getCommand("spawn").setExecutor(new SpawnCommand(this));
-        getCommand("home").setExecutor(new HomeCommand(this));
-
+        // Команды: имена, алиасы и включение — в config.yml → commands
+        Commands.register(this, "spawn", "Teleport to spawn", null, List.of(), new SpawnCommand(this), null);
+        Commands.register(this, "home", "Teleport home (to your bed)", null, List.of(), new HomeCommand(this), null);
         TpaCommand tpa = new TpaCommand(this);
-        getCommand("tpa").setExecutor(tpa);
-        getCommand("tpa").setTabCompleter(tpa);
-        getCommand("tpaaccept").setExecutor(new TpaAcceptCommand(this));
-        getCommand("tpadeny").setExecutor(new TpaDenyCommand(this));
-
-        getCommand("resources").setExecutor(new ResourcesCommand(this));
-
+        Commands.register(this, "tpa", "Ask a player to teleport to them", null, List.of(), tpa, tpa);
+        Commands.register(this, "tpaaccept", "Accept a teleport request", null, List.of("tpaccept", "tpyes"), new TpaAcceptCommand(this), (s, c, l, a) -> List.of());
+        Commands.register(this, "tpadeny", "Deny a teleport request", null, List.of("tpno"), new TpaDenyCommand(this), (s, c, l, a) -> List.of());
+        Commands.register(this, "resources", "Teleport to the resource world", null, List.of("res", "ресурсы"), new ResourcesCommand(this), (s, c, l, a) -> List.of());
         WhisperCommand msg = new WhisperCommand(this, false);
-        getCommand("msg").setExecutor(msg);
-        getCommand("msg").setTabCompleter(msg);
-        getCommand("reply").setExecutor(new WhisperCommand(this, true));
+        Commands.register(this, "msg", "Private message", null, List.of("tell", "w", "whisper", "m", "pm"), msg, msg);
+        WhisperCommand reply = new WhisperCommand(this, true);
+        Commands.register(this, "reply", "Reply to the last private message", null, List.of("r"), reply, reply);
+
+        visibility.setHelp(new Help(this, visibility));
 
         getLogger().info("Plugin enabled");
     }

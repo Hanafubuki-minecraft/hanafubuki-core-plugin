@@ -22,9 +22,36 @@ hide-from-non-ops:
   namespaced: true
 
 help:
-  # /help и /? показывают короткий список команд для игроков (тексты — в messages.yml → help)
+  # /help и /? показывают только команды, доступные игроку (опы видят всё), по разделам и со страницами.
+  # Разделы, описания и подсказки по аргументам — в messages.yml → help
   enabled: true
+  per-page: 14
+  # Никогда не показывать в /help (вход AuthMe и т.п.)
+  hide: [login, l, register, reg, logout, unregister, authme, skinsrestorer]
 
 chat:
   # Сообщения о входе и выходе в стиле сервера (тексты — в messages.yml → join / first-join / quit)
   join-quit: true
+
+# Команды плагина: имя, алиасы, включение. Изменения — после рестарта сервера.
+commands:
+  spawn:     { enabled: true, name: spawn,     aliases: [] }
+  home:      { enabled: true, name: home,      aliases: [] }
+  tpa:       { enabled: true, name: tpa,       aliases: [] }
+  tpaaccept: { enabled: true, name: tpaaccept, aliases: [tpaccept, tpyes] }
+  tpadeny:   { enabled: true, name: tpadeny,   aliases: [tpno] }
+  resources: { enabled: true, name: resources, aliases: [res, ресурсы] }
+  msg:       { enabled: true, name: msg,       aliases: [tell, w, whisper, m, pm] }
+  reply:     { enabled: true, name: reply,     aliases: [r] }
+
+# Palette of all messages (MiniMessage tags in messages.yml: <accent> <text> <muted> <dim> <success> <error> <gold>, <symbol>)
+# Hanafubuki style: https://github.com/Hanafubuki-minecraft/hanafubuki-brand/blob/main/STYLE.md
+style:
+  symbol: "❀"
+  accent: "#F7A1C0"
+  text: "#F4EEF6"
+  muted: "#A99BB5"
+  dim: "#6F6480"
+  success: "#A8E6B5"
+  error: "#FF8A9B"
+  gold: "#FFCF6B"

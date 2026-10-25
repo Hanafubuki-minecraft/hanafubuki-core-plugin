@@ -19,6 +19,7 @@ public final class Msg {
 
     private static final MiniMessage MM = MiniMessage.miniMessage();
     private static YamlConfiguration lang = new YamlConfiguration();
+    private static TagResolver style = Style.resolver(null);
 
     private Msg() {
     }
@@ -32,10 +33,33 @@ public final class Msg {
             y.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(in, StandardCharsets.UTF_8)));
         }
         lang = y;
+        style = Style.resolver(plugin.getConfig().getConfigurationSection("style"));
+    }
+
+    private static TagResolver[] withStyle(TagResolver[] r) {
+        TagResolver[] all = new TagResolver[r.length + 1];
+        all[0] = style;
+        System.arraycopy(r, 0, all, 1, r.length);
+        return all;
     }
 
     public static String raw(String key) {
         return lang.getString(key, key);
+    }
+
+    /** Экранировать текст для вставки в шаблон MiniMessage. */
+    public static String escape(String text) {
+        return MM.escapeTags(text);
+    }
+
+    public static org.bukkit.configuration.ConfigurationSection section(String key) {
+        var s = lang.getConfigurationSection(key);
+        if (s == null && lang.getDefaults() != null) s = lang.getDefaults().getConfigurationSection(key);
+        return s;
+    }
+
+    public static boolean has(String key) {
+        return lang.contains(key);
     }
 
     public static List<String> list(String key) {
@@ -43,21 +67,21 @@ public final class Msg {
     }
 
     public static Component get(String key, TagResolver... r) {
-        return MM.deserialize(raw(key), r);
+        return MM.deserialize(raw(key), withStyle(r));
     }
 
     public static Component parse(String text, TagResolver... r) {
-        return MM.deserialize(text, r);
+        return MM.deserialize(text, withStyle(r));
     }
 
     /** С префиксом ❀. */
     public static void send(CommandSender to, String key, TagResolver... r) {
-        to.sendMessage(MM.deserialize(raw("prefix") + raw(key), r));
+        to.sendMessage(MM.deserialize(raw("prefix") + raw(key), withStyle(r)));
     }
 
     /** Без префикса — подсказки, строки списков. */
     public static void line(CommandSender to, String key, TagResolver... r) {
-        to.sendMessage(MM.deserialize(raw(key), r));
+        to.sendMessage(MM.deserialize(raw(key), withStyle(r)));
     }
 
     /** Плейсхолдер без разбора тегов — ник или текст игрока не может внедрить разметку. */

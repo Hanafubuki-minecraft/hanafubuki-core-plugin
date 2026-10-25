@@ -1,77 +1,112 @@
 # Hanafubuki — тексты core-плагина
 # Формат: MiniMessage — https://docs.advntr.dev/minimessage/format.html
-# Стиль и палитра: https://github.com/Hanafubuki-minecraft/hanafubuki-brand/blob/main/STYLE.md
-#   сакура #F7A1C0 · текст #F4EEF6 · приглушённый #A99BB5 · тихий #6F6480
-#   успех #A8E6B5 · ошибка #FF8A9B · золото #FFCF6B
+# Стиль: https://github.com/Hanafubuki-minecraft/hanafubuki-brand/blob/main/STYLE.md
+# Цвета — смысловые теги <accent> <text> <muted> <dim> <success> <error> <gold>, символ — <symbol>; палитра в config.yml → style
 
-prefix: "<#F7A1C0>❀</#F7A1C0> "
+prefix: "<accent><symbol></accent> "
 
 teleport:
-  bar-spawn: "<#F7A1C0>❀</#F7A1C0> <#F4EEF6>На спавн</#F4EEF6>"
-  bar-home: "<#F7A1C0>❀</#F7A1C0> <#F4EEF6>Домой</#F4EEF6>"
-  bar-resources: "<#F7A1C0>❀</#F7A1C0> <#F4EEF6>В мир ресурсов</#F4EEF6>"
-  bar-tpa: "<#F7A1C0>❀</#F7A1C0> <#F4EEF6>К <name></#F4EEF6>"
-  done: "<#A99BB5>Готово — ты на месте.</#A99BB5>"
-  cancelled: "<#FF8A9B>Телепорт отменён — ты сошёл с места.</#FF8A9B>"
+  bar-spawn: "<accent>❀</accent> <text>На спавн</text>"
+  bar-home: "<accent>❀</accent> <text>Домой</text>"
+  bar-resources: "<accent>❀</accent> <text>В мир ресурсов</text>"
+  bar-tpa: "<accent>❀</accent> <text>К <name></text>"
+  done: "<muted>Готово — ты на месте.</muted>"
+  cancelled: "<error>Телепорт отменён — ты сошёл с места.</error>"
 
 home:
-  no-bed: "<#FF8A9B>Дома пока нет — поспи в кровати, и она станет твоим <#F4EEF6>/home</#F4EEF6>.</#FF8A9B>"
+  no-bed: "<error>Дома пока нет — поспи в кровати, и она станет твоим <text>/home</text>.</error>"
 
 resources:
-  unavailable: "<#FF8A9B>Мир ресурсов сейчас недоступен.</#FF8A9B>"
-  searching: "<#A99BB5>Ищу безопасное место…</#A99BB5>"
-  failed: "<#FF8A9B>Не нашлось безопасного места — попробуй ещё раз.</#FF8A9B>"
+  unavailable: "<error>Мир ресурсов сейчас недоступен.</error>"
+  searching: "<muted>Ищу безопасное место…</muted>"
+  failed: "<error>Не нашлось безопасного места — попробуй ещё раз.</error>"
 
 tpa:
-  usage: "<#A99BB5>Использование: <#F4EEF6>/tpa [ник]</#F4EEF6></#A99BB5>"
-  not-found: "<#FF8A9B>Игрок <#F4EEF6><name></#F4EEF6> не в сети.</#FF8A9B>"
-  self: "<#A99BB5>К себе телепортироваться не нужно — ты уже здесь.</#A99BB5>"
-  sent: "<#A99BB5>Запрос отправлен игроку <#F4EEF6><name></#F4EEF6>.</#A99BB5>"
-  request: "<#F4EEF6><name></#F4EEF6> <#A99BB5>просится к тебе.</#A99BB5> <click:run_command:'/tpaaccept'><hover:show_text:'<#A8E6B5>Пустить'><#A8E6B5>[Принять]</#A8E6B5></hover></click> <click:run_command:'/tpadeny'><hover:show_text:'<#FF8A9B>Отказать'><#FF8A9B>[Отклонить]</#FF8A9B></hover></click>"
-  request-hint: "<#6F6480>  или /tpaaccept · /tpadeny</#6F6480>"
-  none: "<#A99BB5>Запросов на телепорт нет.</#A99BB5>"
-  accepted-target: "<#A8E6B5>Запрос принят — <name> уже в пути.</#A8E6B5>"
-  accepted-sender: "<#A8E6B5><name> принимает запрос — не двигайся.</#A8E6B5>"
-  denied-target: "<#A99BB5>Запрос от <#F4EEF6><name></#F4EEF6> отклонён.</#A99BB5>"
-  denied-sender: "<#FF8A9B><name> отклоняет запрос.</#FF8A9B>"
+  usage: "<muted>Использование: <text>/tpa [ник]</text></muted>"
+  not-found: "<error>Игрок <text><name></text> не в сети.</error>"
+  self: "<muted>К себе телепортироваться не нужно — ты уже здесь.</muted>"
+  sent: "<muted>Запрос отправлен игроку <text><name></text>.</muted>"
+  request: "<text><name></text> <muted>просится к тебе.</muted> <click:run_command:'/tpaaccept'><hover:show_text:'<success>Пустить'><success>[Принять]</success></hover></click> <click:run_command:'/tpadeny'><hover:show_text:'<error>Отказать'><error>[Отклонить]</error></hover></click>"
+  request-hint: "<dim>  или /tpaaccept · /tpadeny</dim>"
+  none: "<muted>Запросов на телепорт нет.</muted>"
+  accepted-target: "<success>Запрос принят — <name> уже в пути.</success>"
+  accepted-sender: "<success><name> принимает запрос — не двигайся.</success>"
+  denied-target: "<muted>Запрос от <text><name></text> отклонён.</muted>"
+  denied-sender: "<error><name> отклоняет запрос.</error>"
 
 whisper:
-  usage: "<#A99BB5>Использование: <#F4EEF6>/msg [ник] [текст]</#F4EEF6></#A99BB5>"
-  reply-usage: "<#A99BB5>Использование: <#F4EEF6>/r [текст]</#F4EEF6></#A99BB5>"
-  not-found: "<#FF8A9B>Игрок <#F4EEF6><name></#F4EEF6> не в сети.</#FF8A9B>"
-  self: "<#A99BB5>Себе писать не нужно.</#A99BB5>"
-  no-reply: "<#A99BB5>Пока некому ответить — сначала напиши через <#F4EEF6>/msg</#F4EEF6>.</#A99BB5>"
+  usage: "<muted>Использование: <text>/msg [ник] [текст]</text></muted>"
+  reply-usage: "<muted>Использование: <text>/r [текст]</text></muted>"
+  not-found: "<error>Игрок <text><name></text> не в сети.</error>"
+  self: "<muted>Себе писать не нужно.</muted>"
+  no-reply: "<muted>Пока некому ответить — сначала напиши через <text>/msg</text>.</muted>"
   console-name: "Сервер"
-  to: "<#F7A1C0>✉ ты → <name></#F7A1C0> <#6F6480>·</#6F6480> <#F4EEF6><text></#F4EEF6>"
-  from: "<click:suggest_command:'/r '><hover:show_text:'<#A99BB5>Ответить'><#F7A1C0>✉ <name> → тебе</#F7A1C0> <#6F6480>·</#6F6480> <#F4EEF6><text></#F4EEF6></hover></click>"
+  to: "<accent>✉ ты → <name></accent> <dim>·</dim> <text><text></text>"
+  from: "<click:suggest_command:'/r '><hover:show_text:'<muted>Ответить'><accent>✉ <name> → тебе</accent> <dim>·</dim> <text><text></text></hover></click>"
 
-join: "<#6F6480><#F7A1C0>❀</#F7A1C0> <name> заходит на сервер</#6F6480>"
-first-join: "<#F7A1C0>❀ Встречайте <#F4EEF6><name></#F4EEF6> — впервые на Hanafubuki!</#F7A1C0>"
-quit: "<#6F6480>❀ <name> покидает сервер</#6F6480>"
+join: "<dim><accent>❀</accent> <name> заходит на сервер</dim>"
+first-join: "<accent>❀ Встречайте <text><name></text> — впервые на Hanafubuki!</accent>"
+quit: "<dim>❀ <name> покидает сервер</dim>"
 
-# /help и /? — нажми на команду, и она подставится в чат
+unknown-command: "<error>Неизвестная команда. Список доступных — <text>/help</text>.</error>"
+
+# /help — собирается сам из команд, доступных игроку. Здесь — оформление, разделы и описания.
 help:
-  - ""
-  - "<#F7A1C0>❀ Hanafubuki</#F7A1C0> <#6F6480>· команды</#6F6480>"
-  - ""
-  - "<#F7A1C0>Телепорт</#F7A1C0>"
-  - " <click:suggest_command:'/spawn'><#F4EEF6>/spawn</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>на спавн</#A99BB5>"
-  - " <click:suggest_command:'/home'><#F4EEF6>/home</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>домой, к своей кровати</#A99BB5>"
-  - " <click:suggest_command:'/tpa '><#F4EEF6>/tpa [ник]</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>попроситься к игроку</#A99BB5>"
-  - " <click:suggest_command:'/tpaaccept'><#F4EEF6>/tpaaccept</#F4EEF6></click> <#6F6480>·</#6F6480> <click:suggest_command:'/tpadeny'><#F4EEF6>/tpadeny</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>принять или отклонить</#A99BB5>"
-  - " <click:suggest_command:'/resources'><#F4EEF6>/resources</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>в мир ресурсов</#A99BB5>"
-  - " <click:suggest_command:'/rwtime'><#F4EEF6>/rwtime</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>когда мир ресурсов обновится</#A99BB5>"
-  - ""
-  - "<#F7A1C0>Карта</#F7A1C0>"
-  - " <click:suggest_command:'/marker add '><#F4EEF6>/marker add [название]</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>метка на твоём месте</#A99BB5>"
-  - " <click:suggest_command:'/marker list'><#F4EEF6>/marker list</#F4EEF6></click> <#6F6480>·</#6F6480> <click:suggest_command:'/marker remove '><#F4EEF6>/marker remove [название]</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>твои метки</#A99BB5>"
-  - ""
-  - "<#F7A1C0>Общение и разное</#F7A1C0>"
-  - " <click:suggest_command:'/msg '><#F4EEF6>/msg [ник] [текст]</#F4EEF6></click> <#6F6480>·</#6F6480> <click:suggest_command:'/r '><#F4EEF6>/r [текст]</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>личные сообщения</#A99BB5>"
-  - " <click:suggest_command:'/sit'><#F4EEF6>/sit</#F4EEF6></click> <#6F6480>·</#6F6480> <click:suggest_command:'/lay'><#F4EEF6>/lay</#F4EEF6></click> <#6F6480>·</#6F6480> <click:suggest_command:'/crawl'><#F4EEF6>/crawl</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>сесть, лечь, ползти</#A99BB5>"
-  - " <click:suggest_command:'/skin set '><#F4EEF6>/skin set [ник]</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>сменить скин</#A99BB5>"
-  - " <click:suggest_command:'/trigger ch_toggle'><#F4EEF6>/trigger ch_toggle</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>координаты на экране</#A99BB5>"
-  - ""
-  - "<#6F6480>  нажми на команду, чтобы подставить её в чат</#6F6480>"
-
-help-op: "<#6F6480>  все команды сервера: /bukkit:help</#6F6480>"
+  header: "<accent><symbol> Hanafubuki</accent> <dim>· команды · <page>/<pages></dim>"
+  group: "<accent><title></accent>"
+  entry: " <click:suggest_command:'<suggest>'><hover:show_text:'<muted>Нажми, чтобы подставить'><text><usage></text></hover></click> <dim>—</dim> <muted><desc></muted>"
+  entry-plain: " <click:suggest_command:'<suggest>'><hover:show_text:'<muted>Нажми, чтобы подставить'><text><usage></text></hover></click>"
+  nav: "  <prev>  <next>"
+  prev: "<click:run_command:'<target>'><accent>‹ назад</accent></click>"
+  next: "<click:run_command:'<target>'><accent>дальше ›</accent></click>"
+  prev-off: "<dim>‹ назад</dim>"
+  next-off: "<dim>дальше ›</dim>"
+  hint: "<dim>  нажми на команду, чтобы подставить её в чат</dim>"
+  op-hint: "<dim>  ты оп — видны все команды сервера</dim>"
+  other: "Другое"
+  # Разделы по порядку. В commands — имена команд (для команд этого плагина — их id из config.yml → commands)
+  groups:
+    teleport:
+      title: "Телепорт"
+      commands: [spawn, home, tpa, tpaaccept, tpadeny, resources, rwtime]
+    map:
+      title: "Карта"
+      commands: [marker]
+    chat:
+      title: "Общение"
+      commands: [msg, reply, list, me]
+    rest:
+      title: "Отдых и вид"
+      commands: [sit, lay, crawl, bellyflop, spin, skin, trigger]
+  # Как показывать команду с аргументами (иначе — просто /имя)
+  usage:
+    tpa: "/tpa [ник]"
+    msg: "/msg [ник] [текст]"
+    reply: "/r [текст]"
+    marker: "/marker add [название]"
+    skin: "/skin set [ник]"
+    trigger: "/trigger ch_toggle"
+    changepassword: "/changepassword [старый] [новый]"
+  # Описания (иначе — описание из самого плагина)
+  desc:
+    spawn: "на спавн"
+    home: "домой, к своей кровати"
+    tpa: "попроситься к игроку"
+    tpaaccept: "принять запрос на телепорт"
+    tpadeny: "отклонить запрос"
+    resources: "в мир ресурсов"
+    rwtime: "когда мир ресурсов обновится"
+    marker: "метки на карте: add, list, remove"
+    msg: "личное сообщение"
+    reply: "ответить на последнее личное"
+    list: "кто сейчас онлайн"
+    me: "действие от третьего лица"
+    sit: "сесть"
+    lay: "лечь"
+    crawl: "ползти"
+    bellyflop: "лечь на живот"
+    spin: "покрутиться"
+    skin: "сменить скин"
+    trigger: "координаты на экране и другие датапаки"
+    changepassword: "сменить пароль"
+    geyser: "команды для Bedrock"
