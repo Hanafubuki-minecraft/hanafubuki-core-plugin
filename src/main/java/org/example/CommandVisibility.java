@@ -28,6 +28,7 @@ public class CommandVisibility implements Listener {
     private boolean hideNamespaced = true;
     private Set<String> hiddenPlugins = new HashSet<>();
     private Set<String> bedrockAllowed = new HashSet<>();
+    private Set<String> alwaysVisible = new HashSet<>();
     private boolean customHelp = true;
 
     public CommandVisibility(Main plugin) {
@@ -56,6 +57,12 @@ public class CommandVisibility implements Listener {
         Set<String> br = new HashSet<>();
         for (String s : plugin.getConfig().getStringList("hide-from-non-ops.bedrock-allowed")) br.add(s.toLowerCase(Locale.ROOT));
         bedrockAllowed = br;
+        Set<String> av = new HashSet<>();
+        for (String s : plugin.getConfig().getStringList("hide-from-non-ops.always-visible")) av.add(s.toLowerCase(Locale.ROOT));
+        if (plugin.getConfig().getDefaults() != null) {
+            for (String s : plugin.getConfig().getDefaults().getStringList("hide-from-non-ops.always-visible")) av.add(s.toLowerCase(Locale.ROOT));
+        }
+        alwaysVisible = av;
         customHelp = plugin.getConfig().getBoolean("help.enabled", true);
     }
 
@@ -111,20 +118,25 @@ public class CommandVisibility implements Listener {
     public boolean availableTo(Player p, String label) {
         String l = label.toLowerCase(Locale.ROOT);
         if (l.contains(":")) l = l.substring(l.indexOf(':') + 1);
+        if (alwaysVisible.contains(l)) return true;
         Command c = Bukkit.getCommandMap().getCommand(l);
         if (c == null) return true;
+        if (alwaysVisible.contains(c.getName().toLowerCase(Locale.ROOT))) return true;
         if (c.getPermission() != null && !c.getPermission().isBlank()) return c.testPermissionSilent(p);
         if (!(c instanceof PluginIdentifiableCommand pic)) return true;
+        // Ищем права плагина, относящиеся к этой команде. Скрываем, только если игроку
+        // не доступно НИ ОДНО из них (у AuthMe есть и authme.player.register, и authme.admin.register).
         String prefix = pic.getPlugin().getName().toLowerCase(Locale.ROOT) + ".";
         String name = c.getName().toLowerCase(Locale.ROOT);
+        boolean matched = false;
         for (Permission perm : Bukkit.getPluginManager().getPermissions()) {
             String n = perm.getName().toLowerCase(Locale.ROOT);
             if (!n.startsWith(prefix)) continue;
-            boolean matches = n.endsWith("." + name) || n.contains("." + name + ".");
-            if (!matches || perm.getDefault() == PermissionDefault.TRUE) continue;
-            if (!p.hasPermission(perm)) return false;
+            if (!(n.endsWith("." + name) || n.contains("." + name + "."))) continue;
+            matched = true;
+            if (perm.getDefault() == PermissionDefault.TRUE || p.hasPermission(perm)) return true;
         }
-        return true;
+        return !matched;
     }
 
     /** /help — свой список команд для игроков; скрытые команды — «неизвестная команда». */

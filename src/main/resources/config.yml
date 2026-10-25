@@ -45,6 +45,8 @@ hide-from-non-ops:
   # Bedrock-игрокам эти команды НЕ скрываем: /geyser advancements — их единственный способ открыть достижения,
   # /geyser offhand — сменить руку
   bedrock-allowed: [geyser]
+  # Эти команды никогда не прячутся (вход и регистрация AuthMe и т.п.)
+  always-visible: [login, l, register, reg, changepassword, logout, email, captcha]
   # Встроенный список по умолчанию добавляется к твоему (новые версии плагина могут его дополнять).
   # false — использовать только то, что написано здесь.
   include-defaults: true

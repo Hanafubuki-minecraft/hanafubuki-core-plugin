@@ -1,5 +1,5 @@
 name: Hanafubuki
-version: 1.12.4
+version: 1.12.5
 main: org.example.Main
 api-version: "1.21"
 # Команды регистрируются из config.yml → commands (имена, алиасы, включение)
