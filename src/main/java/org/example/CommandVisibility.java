@@ -4,6 +4,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.PluginIdentifiableCommand;
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.Permission;
+import org.bukkit.permissions.PermissionDefault;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -81,11 +83,36 @@ public class CommandVisibility implements Listener {
         return false;
     }
 
-    /** Список команд для Tab: убираем скрытые. */
+    /** Список команд для Tab: убираем скрытые и те, что игроку на деле недоступны. */
     @EventHandler
     public void onCommandSend(PlayerCommandSendEvent e) {
-        if (e.getPlayer().isOp()) return;
-        e.getCommands().removeIf(this::isHidden);
+        Player p = e.getPlayer();
+        if (p.isOp()) return;
+        e.getCommands().removeIf(label -> isHidden(label) || !availableTo(p, label));
+    }
+
+    /**
+     * Доступна ли команда игроку на самом деле. Если у команды задано право — решает оно.
+     * Если нет (плагин проверяет права внутри команды), ищем среди прав этого плагина
+     * соответствующее команде (…capes, ….command.capes, ….capes.…) и проверяем его.
+     */
+    public boolean availableTo(Player p, String label) {
+        String l = label.toLowerCase(Locale.ROOT);
+        if (l.contains(":")) l = l.substring(l.indexOf(':') + 1);
+        Command c = Bukkit.getCommandMap().getCommand(l);
+        if (c == null) return true;
+        if (c.getPermission() != null && !c.getPermission().isBlank()) return c.testPermissionSilent(p);
+        if (!(c instanceof PluginIdentifiableCommand pic)) return true;
+        String prefix = pic.getPlugin().getName().toLowerCase(Locale.ROOT) + ".";
+        String name = c.getName().toLowerCase(Locale.ROOT);
+        for (Permission perm : Bukkit.getPluginManager().getPermissions()) {
+            String n = perm.getName().toLowerCase(Locale.ROOT);
+            if (!n.startsWith(prefix)) continue;
+            boolean matches = n.endsWith("." + name) || n.contains("." + name + ".");
+            if (!matches || perm.getDefault() == PermissionDefault.TRUE) continue;
+            if (!p.hasPermission(perm)) return false;
+        }
+        return true;
     }
 
     /** /help — свой список команд для игроков; скрытые команды — «неизвестная команда». */
