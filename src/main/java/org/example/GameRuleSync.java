@@ -94,7 +94,9 @@ public class GameRuleSync implements Listener {
             for (World w : Bukkit.getWorlds()) if (value != null && value.equals(w.getGameRuleValue(rule))) worlds++;
             int total = Bukkit.getWorlds().size();
             plugin.getLogger().info("Gamerule " + rule.getName() + "=" + value + ": " + worlds + "/" + total + " worlds (" + changed + " changed)");
-            if (sender != null) {
+            // отчёт — только опам и консоли (датапаки выполняют /gamerule от имени игроков)
+            boolean admin = sender != null && (!(sender instanceof org.bukkit.entity.Player p) || p.isOp());
+            if (admin) {
                 Msg.send(sender, "gamerules.synced", ph("rule", rule.getName()), ph("value", value),
                         ph("count", worlds), ph("total", total));
             }
