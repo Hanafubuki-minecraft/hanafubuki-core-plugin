@@ -28,7 +28,6 @@ public class CommandVisibility implements Listener {
     private boolean hideNamespaced = true;
     private Set<String> hiddenPlugins = new HashSet<>();
     private Set<String> bedrockAllowed = new HashSet<>();
-    private Set<String> bedrockAllowed = new HashSet<>();
     private boolean customHelp = true;
 
     public CommandVisibility(Main plugin) {
@@ -54,9 +53,6 @@ public class CommandVisibility implements Listener {
             for (String s : plugin.getConfig().getDefaults().getStringList("hide-from-non-ops.plugins")) plugins.add(s.toLowerCase(Locale.ROOT));
         }
         hiddenPlugins = plugins;
-        Set<String> br = new HashSet<>();
-        for (String s : plugin.getConfig().getStringList("hide-from-non-ops.bedrock-allowed")) br.add(s.toLowerCase(Locale.ROOT));
-        bedrockAllowed = br;
         Set<String> br = new HashSet<>();
         for (String s : plugin.getConfig().getStringList("hide-from-non-ops.bedrock-allowed")) br.add(s.toLowerCase(Locale.ROOT));
         bedrockAllowed = br;
@@ -97,12 +93,6 @@ public class CommandVisibility implements Listener {
             return hiddenPlugins.contains(pic.getPlugin().getName().toLowerCase(Locale.ROOT));
         }
         return false;
-    }
-
-    /** Скрыта ли команда для этого игрока (Bedrock-игрокам можно то, что в bedrock-allowed). */
-    public boolean isHiddenFor(Player p, String label) {
-        if (ChatStyle.isBedrock(p) && bedrockAllowed.contains(label.toLowerCase(Locale.ROOT))) return false;
-        return isHidden(label);
     }
 
     /** Список команд для Tab: убираем скрытые и те, что игроку на деле недоступны. */
