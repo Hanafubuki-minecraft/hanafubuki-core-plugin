@@ -88,11 +88,17 @@ public class GameRuleSync implements Listener {
             } finally {
                 propagating = false;
             }
-            Object value = changedWorld.getGameRuleValue(rule);
+            Object value;
+            try {
+                value = changedWorld.getGameRuleValue(rule);
+            } catch (IllegalArgumentException unavailable) {
+                return;
+            }
             // во скольких мирах правило теперь именно такое (а не сколько пришлось поменять)
             int worlds = 0;
             for (World w : Bukkit.getWorlds()) if (value != null && value.equals(w.getGameRuleValue(rule))) worlds++;
             int total = Bukkit.getWorlds().size();
+            if (changed == 0) return; // значение и так везде одинаковое — без шума в логе и чате
             plugin.getLogger().info("Gamerule " + rule.getName() + "=" + value + ": " + worlds + "/" + total + " worlds (" + changed + " changed)");
             // отчёт — только опам и консоли (датапаки выполняют /gamerule от имени игроков)
             boolean admin = sender != null && (!(sender instanceof org.bukkit.entity.Player p) || p.isOp());
@@ -115,8 +121,12 @@ public class GameRuleSync implements Listener {
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     private static boolean copy(World from, World to, GameRule rule) {
-        Object value = from.getGameRuleValue(rule);
-        if (value == null || value.equals(to.getGameRuleValue(rule))) return false;
-        return to.setGameRule(rule, value);
+        try {
+            Object value = from.getGameRuleValue(rule);
+            if (value == null || value.equals(to.getGameRuleValue(rule))) return false;
+            return to.setGameRule(rule, value);
+        } catch (IllegalArgumentException unavailable) {
+            return false; // правило не включено в этой версии/мире (экспериментальные фичи)
+        }
     }
 }
