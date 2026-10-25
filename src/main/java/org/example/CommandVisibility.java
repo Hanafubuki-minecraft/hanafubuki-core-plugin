@@ -1,5 +1,8 @@
 package org.example;
 
+import org.bukkit.Bukkit;
+import org.bukkit.command.Command;
+import org.bukkit.command.PluginIdentifiableCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -20,6 +23,7 @@ public class CommandVisibility implements Listener {
     private final Main plugin;
     private Set<String> hidden = new HashSet<>();
     private boolean hideNamespaced = true;
+    private Set<String> hiddenPlugins = new HashSet<>();
     private boolean customHelp = true;
 
     public CommandVisibility(Main plugin) {
@@ -34,6 +38,9 @@ public class CommandVisibility implements Listener {
         }
         hidden = set;
         hideNamespaced = plugin.getConfig().getBoolean("hide-from-non-ops.namespaced", true);
+        Set<String> plugins = new HashSet<>();
+        for (String s : plugin.getConfig().getStringList("hide-from-non-ops.plugins")) plugins.add(s.toLowerCase(Locale.ROOT));
+        hiddenPlugins = plugins;
         customHelp = plugin.getConfig().getBoolean("help.enabled", true);
     }
 
@@ -51,7 +58,18 @@ public class CommandVisibility implements Listener {
     public boolean isHidden(String label) {
         if (customHelp && isHelp(label)) return false;   // свой /help виден всем
         String l = label.toLowerCase(Locale.ROOT);
-        return hidden.contains(l) || (hideNamespaced && l.contains(":"));
+        if (hidden.contains(l) || (hideNamespaced && l.contains(":"))) return true;
+        return fromHiddenPlugin(l);
+    }
+
+    /** Команда принадлежит плагину из hide-from-non-ops.plugins (WorldEdit, CoreProtect…). */
+    private boolean fromHiddenPlugin(String label) {
+        if (hiddenPlugins.isEmpty()) return false;
+        Command c = Bukkit.getCommandMap().getCommand(label);
+        if (c instanceof PluginIdentifiableCommand pic) {
+            return hiddenPlugins.contains(pic.getPlugin().getName().toLowerCase(Locale.ROOT));
+        }
+        return false;
     }
 
     /** Список команд для Tab: убираем скрытые. */

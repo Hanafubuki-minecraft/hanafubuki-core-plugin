@@ -50,7 +50,7 @@ The compiled `.jar` will be in `target/`.
 
 ## Hidden commands
 
-Non-op players don't see `/plugins`, `/version` and namespaced commands (`minecraft:give`…) in tab completion, and typing them gives the vanilla "unknown command" message. Ops see everything. The list is in `config.yml` → `hide-from-non-ops`.
+Non-op players don't see `/plugins`, `/version` and namespaced commands (`minecraft:give`…) in tab completion, and typing them gives the vanilla "unknown command" message. Ops see everything. The list is in `config.yml` → `hide-from-non-ops`; `plugins` hides every command of the listed plugins (WorldEdit's `//wand`, `//set`, CoreProtect, Chunky…).
 
 ## Messages
 

@@ -20,6 +20,8 @@ hide-from-non-ops:
     - icanhasbukkit
   # Прятать команды с префиксом: minecraft:give, bukkit:plugins, paper:… и т.п.
   namespaced: true
+  # Все команды этих плагинов не-опы не видят и не могут вызвать (включая //wand, //set и т.п.)
+  plugins: [WorldEdit, FastAsyncWorldEdit, CoreProtect, Chunky]
 
 help:
   # /help и /? показывают только команды, доступные игроку (опы видят всё), по разделам и со страницами.
