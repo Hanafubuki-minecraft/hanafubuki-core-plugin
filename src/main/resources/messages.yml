@@ -97,7 +97,7 @@ help:
   groups:
     start:
       title: "Начало"
-      commands: [guide]
+      commands: [guide, geyser]
     teleport:
       title: "Телепорт"
       commands: [spawn, home, tpa, tpaaccept, tpadeny, resources, rwtime]
@@ -145,4 +145,4 @@ help:
     gsit: "настройки сидения"
     changepassword: "сменить пароль"
     trigger: "координаты на экране и другие датапаки"
-    geyser: "команды для Bedrock"
+    geyser: "Bedrock: /geyser advancements — достижения"

@@ -27,6 +27,7 @@ public class CommandVisibility implements Listener {
     private Set<String> hidden = new HashSet<>();
     private boolean hideNamespaced = true;
     private Set<String> hiddenPlugins = new HashSet<>();
+    private Set<String> bedrockAllowed = new HashSet<>();
     private boolean customHelp = true;
 
     public CommandVisibility(Main plugin) {
@@ -52,6 +53,9 @@ public class CommandVisibility implements Listener {
             for (String s : plugin.getConfig().getDefaults().getStringList("hide-from-non-ops.plugins")) plugins.add(s.toLowerCase(Locale.ROOT));
         }
         hiddenPlugins = plugins;
+        Set<String> br = new HashSet<>();
+        for (String s : plugin.getConfig().getStringList("hide-from-non-ops.bedrock-allowed")) br.add(s.toLowerCase(Locale.ROOT));
+        bedrockAllowed = br;
         customHelp = plugin.getConfig().getBoolean("help.enabled", true);
     }
 
@@ -64,6 +68,14 @@ public class CommandVisibility implements Listener {
     private static boolean isHelp(String label) {
         String l = label.toLowerCase(Locale.ROOT);
         return l.equals(Commands.name("help")) || l.equals("help") || l.equals("?");
+    }
+
+    /** Скрыта ли команда для этого игрока (Bedrock-игрокам часть команд оставляем — например, /geyser). */
+    public boolean isHiddenFor(Player p, String label) {
+        String l = label.toLowerCase(Locale.ROOT);
+        if (l.contains(":")) l = l.substring(l.indexOf(':') + 1);
+        if (ChatStyle.isBedrock(p) && bedrockAllowed.contains(l)) return false;
+        return isHidden(label);
     }
 
     public boolean isHidden(String label) {
@@ -88,7 +100,7 @@ public class CommandVisibility implements Listener {
     public void onCommandSend(PlayerCommandSendEvent e) {
         Player p = e.getPlayer();
         if (p.isOp()) return;
-        e.getCommands().removeIf(label -> isHidden(label) || !availableTo(p, label));
+        e.getCommands().removeIf(label -> isHiddenFor(p, label) || !availableTo(p, label));
     }
 
     /**
@@ -133,7 +145,7 @@ public class CommandVisibility implements Listener {
         }
 
         if (p.isOp()) return;
-        if (!isHidden(label)) return;
+        if (!isHiddenFor(p, label)) return;
         e.setCancelled(true);
         Msg.line(p, "unknown-command");
     }

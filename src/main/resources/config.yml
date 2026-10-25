@@ -42,6 +42,9 @@ hide-from-non-ops:
     - none
   # Прятать команды с префиксом: minecraft:give, bukkit:plugins, paper:… и т.п.
   namespaced: true
+  # Bedrock-игрокам эти команды НЕ скрываем: /geyser advancements — их единственный способ открыть достижения,
+  # /geyser offhand — сменить руку
+  bedrock-allowed: [geyser]
   # Встроенный список по умолчанию добавляется к твоему (новые версии плагина могут его дополнять).
   # false — использовать только то, что написано здесь.
   include-defaults: true

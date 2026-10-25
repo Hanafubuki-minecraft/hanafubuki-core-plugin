@@ -64,7 +64,7 @@ public final class Help {
             if (label.contains(":") || !label.equalsIgnoreCase(c.getName())) continue;
             if (hide.contains(label) || label.equals(Commands.name("help"))) continue;
             if (!c.testPermissionSilent(p)) continue;
-            if (!p.isOp() && (visibility.isHidden(label) || !visibility.availableTo(p, label))) continue;
+            if (!p.isOp() && (visibility.isHiddenFor(p, label) || !visibility.availableTo(p, label))) continue;
             available.put(label, c);
         }
 
