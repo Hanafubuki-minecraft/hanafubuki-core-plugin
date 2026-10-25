@@ -9,13 +9,13 @@ import org.bukkit.entity.Creeper;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.ExplosionPrimeEvent;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Сакура-криперы: с шансом крипер вместо взрыва рассыпается облаком лепестков — без урона и разрушений.
+ * Ловим момент перед взрывом (ExplosionPrimeEvent), чтобы взрыв вообще не начинался.
  * config.yml → sakura-creepers.
  */
 public class SakuraCreepers implements Listener {
@@ -26,41 +26,20 @@ public class SakuraCreepers implements Listener {
         this.plugin = plugin;
     }
 
-    /** Момент, когда крипер дошипел и вот-вот взорвётся — ловим до самого взрыва. */
-    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
     public void onPrime(ExplosionPrimeEvent e) {
         if (!(e.getEntity() instanceof Creeper creeper)) return;
-        if (!roll(creeper)) return;
-        e.setCancelled(true);
-        e.setRadius(0);
-        Location at = creeper.getLocation().add(0, 1, 0);
-        creeper.remove();
-        burst(at);
-        log(at);
-    }
-
-    /** Подстраховка: если взрыв всё же случился мимо prime-события — то же решение здесь. */
-    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
-    public void onExplode(EntityExplodeEvent e) {
-        if (!(e.getEntity() instanceof Creeper creeper) || !creeper.isValid()) return;
-        if (!roll(creeper)) return;
-        e.setCancelled(true);
-        e.blockList().clear();
-        Location at = creeper.getLocation().add(0, 1, 0);
-        creeper.remove();
-        burst(at);
-        log(at);
-    }
-
-    private boolean roll(Creeper creeper) {
         var c = plugin.getConfig();
-        if (!c.getBoolean("sakura-creepers.enabled", true)) return false;
-        if (creeper.isPowered() && !c.getBoolean("sakura-creepers.charged-too", false)) return false;
-        return ThreadLocalRandom.current().nextDouble() < c.getDouble("sakura-creepers.chance", 0.25);
-    }
+        if (!c.getBoolean("sakura-creepers.enabled", true)) return;
+        if (creeper.isPowered() && !c.getBoolean("sakura-creepers.charged-too", false)) return;
+        double chance = c.getDouble("sakura-creepers.chance", 0.25);
+        if (ThreadLocalRandom.current().nextDouble() >= chance) return;
 
-    private void log(Location at) {
-        if (plugin.getConfig().getBoolean("sakura-creepers.log", true)) {
+        e.setCancelled(true);
+        Location at = creeper.getLocation().add(0, 1, 0);
+        creeper.remove();
+        burst(at);
+        if (c.getBoolean("sakura-creepers.log", false)) {
             plugin.getLogger().info("Sakura creeper at " + at.getWorld().getName() + " "
                     + at.getBlockX() + " " + at.getBlockY() + " " + at.getBlockZ());
         }

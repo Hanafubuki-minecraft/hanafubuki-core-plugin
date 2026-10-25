@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Main extends JavaPlugin {
 
+    private CommandVisibility visibility;
+
     @Override
     public void onEnable() {
 
@@ -14,7 +16,7 @@ public class Main extends JavaPlugin {
         saveConfig();
         Msg.load(this);
 
-        CommandVisibility visibility = new CommandVisibility(this);
+        visibility = new CommandVisibility(this);
         getServer().getPluginManager().registerEvents(visibility, this);
         getServer().getPluginManager().registerEvents(new JoinQuitListener(this), this);
         getServer().getPluginManager().registerEvents(new SakuraCreepers(this), this);
@@ -32,8 +34,19 @@ public class Main extends JavaPlugin {
         WhisperCommand reply = new WhisperCommand(this, true);
         Commands.register(this, "reply", "Reply to the last private message", null, List.of("r"), reply, reply);
 
+        Commands.register(this, "admin", "Hanafubuki admin: reload, version", "hanafubuki.admin", List.of("hf"),
+                new AdminCommand(this), new AdminCommand(this));
+
         visibility.setHelp(new Help(this, visibility));
 
         getLogger().info("Plugin enabled");
+    }
+
+    /** /hanafubuki reload: конфиг, тексты, стиль, списки скрытых команд. Имена команд — только после рестарта. */
+    public void reloadAll() {
+        reloadConfig();
+        Msg.load(this);
+        visibility.reload();
+        for (var p : getServer().getOnlinePlayers()) p.updateCommands();
     }
 }

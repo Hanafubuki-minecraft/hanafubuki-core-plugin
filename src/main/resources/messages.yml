@@ -44,6 +44,11 @@ whisper:
   to: "<accent>✉ ты → <name></accent> <dim>·</dim> <text><message></text>"
   from: "<click:suggest_command:'/r '><hover:show_text:'<muted>Ответить'><accent>✉ <name> → тебе</accent> <dim>·</dim> <text><message></text></hover></click>"
 
+admin:
+  reloaded: "<success>Конфиг и тексты перезагружены.</success> <dim>Имена команд меняются только после рестарта.</dim>"
+  version: "<muted>Hanafubuki <text><version></text></muted>"
+  usage: "<muted>Использование: <text>/<label> reload</text> <dim>·</dim> <text>/<label> version</text></muted>"
+
 join: "<dim><accent><symbol></accent> <name> заходит на сервер</dim>"
 first-join: "<accent><symbol> Встречайте <text><name></text> — впервые на Hanafubuki!</accent>"
 quit: "<dim><symbol> <name> покидает сервер</dim>"

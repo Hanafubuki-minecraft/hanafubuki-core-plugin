@@ -65,3 +65,7 @@ All texts live in `plugins/Hanafubuki/messages.yml` (MiniMessage) and follow the
 ## Sakura creepers
 
 With a configurable chance (`config.yml` → `sakura-creepers.chance`, default 25%) a creeper bursts into a cloud of cherry petals instead of exploding — no damage, no broken blocks.
+
+## Admin
+
+`/hanafubuki reload` (`/hf reload`, ops only — `hanafubuki.admin`) reloads `config.yml` and `messages.yml` without a restart: texts, style, `/help`, hidden command lists, sakura creepers. Command names and aliases still need a restart.

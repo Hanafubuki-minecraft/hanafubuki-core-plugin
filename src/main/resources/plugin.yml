@@ -3,3 +3,8 @@ version: 1.7.2
 main: org.example.Main
 api-version: "1.21"
 # Команды регистрируются из config.yml → commands (имена, алиасы, включение)
+
+permissions:
+  hanafubuki.admin:
+    description: /hanafubuki reload and version
+    default: op
