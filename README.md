@@ -46,8 +46,12 @@ The compiled `.jar` will be in `target/`.
 
 ## Player /help
 
-`/help` and `/?` show a short list of commands players can actually use (configurable in `config.yml` → `help.lines`), instead of every command on the server.
+`/help` and `/?` show a short list of commands players can actually use (configurable in `messages.yml` → `help`), instead of every command on the server.
 
 ## Hidden commands
 
 Non-op players don't see `/plugins`, `/version` and namespaced commands (`minecraft:give`…) in tab completion, and typing them gives the vanilla "unknown command" message. Ops see everything. The list is in `config.yml` → `hide-from-non-ops`.
+
+## Messages
+
+All texts live in `plugins/Hanafubuki/messages.yml` (MiniMessage) and follow the [Hanafubuki text style](https://github.com/Hanafubuki-minecraft/hanafubuki-brand/blob/main/STYLE.md). `/msg` (`/tell`, `/w`, `/m`) and `/r` replace the vanilla whisper with a styled one; join and quit messages are styled too (`config.yml` → `chat.join-quit`).

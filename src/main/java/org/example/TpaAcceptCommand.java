@@ -2,7 +2,8 @@ package org.example;
 
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
-import org.bukkit.boss.BarColor;
+
+import static org.example.Msg.ph;
 
 public class TpaAcceptCommand implements CommandExecutor {
 
@@ -14,27 +15,19 @@ public class TpaAcceptCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-
         if (!(sender instanceof Player target)) return true;
 
-        var req = TeleportRequestManager.requests.get(target);
-        if (req == null) return true;
-
+        var req = TeleportRequestManager.requests.remove(target);
+        if (req == null || !req.from.isOnline()) {
+            Msg.send(target, "tpa.none");
+            return true;
+        }
         Player from = req.from;
 
-        TeleportRequestManager.requests.remove(target);
+        Msg.send(target, "tpa.accepted-target", ph("name", from.getName()));
+        Msg.send(from, "tpa.accepted-sender", ph("name", target.getName()));
 
-        from.sendMessage("§aПринято");
-        target.sendMessage("§aВы приняли запрос");
-
-        TeleportEffects.start(
-                from,
-                plugin,
-                target.getLocation(),
-                "TPA к игроку",
-                BarColor.GREEN
-        );
-
+        TeleportEffects.start(from, plugin, target.getLocation(), "teleport.bar-tpa", ph("name", target.getName()));
         return true;
     }
 }

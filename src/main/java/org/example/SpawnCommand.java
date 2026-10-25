@@ -3,7 +3,6 @@ package org.example;
 import org.bukkit.Bukkit;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
-import org.bukkit.boss.BarColor;
 
 public class SpawnCommand implements CommandExecutor {
 
@@ -15,17 +14,8 @@ public class SpawnCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-
         if (!(sender instanceof Player player)) return true;
-
-        TeleportEffects.start(
-                player,
-                plugin,
-                Bukkit.getWorlds().get(0).getSpawnLocation(),
-                "Телепортация на спавн",
-                BarColor.GREEN
-        );
-
+        TeleportEffects.start(player, plugin, Bukkit.getWorlds().get(0).getSpawnLocation(), "teleport.bar-spawn");
         return true;
     }
 }

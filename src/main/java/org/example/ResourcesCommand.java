@@ -2,7 +2,6 @@ package org.example;
 
 import org.bukkit.Bukkit;
 import org.bukkit.World;
-import org.bukkit.boss.BarColor;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 
@@ -28,11 +27,11 @@ public class ResourcesCommand implements CommandExecutor {
         World world = Bukkit.getWorld(worldName);
 
         if (world == null) {
-            player.sendMessage("§cМир ресурсов сейчас недоступен");
+            Msg.send(player, "resources.unavailable");
             return true;
         }
 
-        player.sendMessage("§7Ищем безопасное место…");
+        Msg.send(player, "resources.searching");
 
         SafeLocationFinder.find(
                 world,
@@ -44,17 +43,11 @@ public class ResourcesCommand implements CommandExecutor {
             if (!player.isOnline()) return;
 
             if (target == null) {
-                player.sendMessage("§cНе удалось найти безопасное место, попробуй ещё раз");
+                Msg.send(player, "resources.failed");
                 return;
             }
 
-            TeleportEffects.start(
-                    player,
-                    plugin,
-                    target,
-                    "Телепортация в мир ресурсов",
-                    BarColor.PURPLE
-            );
+            TeleportEffects.start(player, plugin, target, "teleport.bar-resources");
         }));
 
         return true;

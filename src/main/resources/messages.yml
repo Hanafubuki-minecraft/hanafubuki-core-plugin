@@ -1,0 +1,77 @@
+# Hanafubuki — тексты core-плагина
+# Формат: MiniMessage — https://docs.advntr.dev/minimessage/format.html
+# Стиль и палитра: https://github.com/Hanafubuki-minecraft/hanafubuki-brand/blob/main/STYLE.md
+#   сакура #F7A1C0 · текст #F4EEF6 · приглушённый #A99BB5 · тихий #6F6480
+#   успех #A8E6B5 · ошибка #FF8A9B · золото #FFCF6B
+
+prefix: "<#F7A1C0>❀</#F7A1C0> "
+
+teleport:
+  bar-spawn: "<#F7A1C0>❀</#F7A1C0> <#F4EEF6>На спавн</#F4EEF6>"
+  bar-home: "<#F7A1C0>❀</#F7A1C0> <#F4EEF6>Домой</#F4EEF6>"
+  bar-resources: "<#F7A1C0>❀</#F7A1C0> <#F4EEF6>В мир ресурсов</#F4EEF6>"
+  bar-tpa: "<#F7A1C0>❀</#F7A1C0> <#F4EEF6>К <name></#F4EEF6>"
+  done: "<#A99BB5>Готово — ты на месте.</#A99BB5>"
+  cancelled: "<#FF8A9B>Телепорт отменён — ты сошёл с места.</#FF8A9B>"
+
+home:
+  no-bed: "<#FF8A9B>Дома пока нет — поспи в кровати, и она станет твоим <#F4EEF6>/home</#F4EEF6>.</#FF8A9B>"
+
+resources:
+  unavailable: "<#FF8A9B>Мир ресурсов сейчас недоступен.</#FF8A9B>"
+  searching: "<#A99BB5>Ищу безопасное место…</#A99BB5>"
+  failed: "<#FF8A9B>Не нашлось безопасного места — попробуй ещё раз.</#FF8A9B>"
+
+tpa:
+  usage: "<#A99BB5>Использование: <#F4EEF6>/tpa [ник]</#F4EEF6></#A99BB5>"
+  not-found: "<#FF8A9B>Игрок <#F4EEF6><name></#F4EEF6> не в сети.</#FF8A9B>"
+  self: "<#A99BB5>К себе телепортироваться не нужно — ты уже здесь.</#A99BB5>"
+  sent: "<#A99BB5>Запрос отправлен игроку <#F4EEF6><name></#F4EEF6>.</#A99BB5>"
+  request: "<#F4EEF6><name></#F4EEF6> <#A99BB5>просится к тебе.</#A99BB5> <click:run_command:'/tpaaccept'><hover:show_text:'<#A8E6B5>Пустить'><#A8E6B5>[Принять]</#A8E6B5></hover></click> <click:run_command:'/tpadeny'><hover:show_text:'<#FF8A9B>Отказать'><#FF8A9B>[Отклонить]</#FF8A9B></hover></click>"
+  request-hint: "<#6F6480>  или /tpaaccept · /tpadeny</#6F6480>"
+  none: "<#A99BB5>Запросов на телепорт нет.</#A99BB5>"
+  accepted-target: "<#A8E6B5>Запрос принят — <name> уже в пути.</#A8E6B5>"
+  accepted-sender: "<#A8E6B5><name> принимает запрос — не двигайся.</#A8E6B5>"
+  denied-target: "<#A99BB5>Запрос от <#F4EEF6><name></#F4EEF6> отклонён.</#A99BB5>"
+  denied-sender: "<#FF8A9B><name> отклоняет запрос.</#FF8A9B>"
+
+whisper:
+  usage: "<#A99BB5>Использование: <#F4EEF6>/msg [ник] [текст]</#F4EEF6></#A99BB5>"
+  reply-usage: "<#A99BB5>Использование: <#F4EEF6>/r [текст]</#F4EEF6></#A99BB5>"
+  not-found: "<#FF8A9B>Игрок <#F4EEF6><name></#F4EEF6> не в сети.</#FF8A9B>"
+  self: "<#A99BB5>Себе писать не нужно.</#A99BB5>"
+  no-reply: "<#A99BB5>Пока некому ответить — сначала напиши через <#F4EEF6>/msg</#F4EEF6>.</#A99BB5>"
+  console-name: "Сервер"
+  to: "<#F7A1C0>✉ ты → <name></#F7A1C0> <#6F6480>·</#6F6480> <#F4EEF6><text></#F4EEF6>"
+  from: "<click:suggest_command:'/r '><hover:show_text:'<#A99BB5>Ответить'><#F7A1C0>✉ <name> → тебе</#F7A1C0> <#6F6480>·</#6F6480> <#F4EEF6><text></#F4EEF6></hover></click>"
+
+join: "<#6F6480><#F7A1C0>❀</#F7A1C0> <name> заходит на сервер</#6F6480>"
+first-join: "<#F7A1C0>❀ Встречайте <#F4EEF6><name></#F4EEF6> — впервые на Hanafubuki!</#F7A1C0>"
+quit: "<#6F6480>❀ <name> покидает сервер</#6F6480>"
+
+# /help и /? — нажми на команду, и она подставится в чат
+help:
+  - ""
+  - "<#F7A1C0>❀ Hanafubuki</#F7A1C0> <#6F6480>· команды</#6F6480>"
+  - ""
+  - "<#F7A1C0>Телепорт</#F7A1C0>"
+  - " <click:suggest_command:'/spawn'><#F4EEF6>/spawn</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>на спавн</#A99BB5>"
+  - " <click:suggest_command:'/home'><#F4EEF6>/home</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>домой, к своей кровати</#A99BB5>"
+  - " <click:suggest_command:'/tpa '><#F4EEF6>/tpa [ник]</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>попроситься к игроку</#A99BB5>"
+  - " <click:suggest_command:'/tpaaccept'><#F4EEF6>/tpaaccept</#F4EEF6></click> <#6F6480>·</#6F6480> <click:suggest_command:'/tpadeny'><#F4EEF6>/tpadeny</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>принять или отклонить</#A99BB5>"
+  - " <click:suggest_command:'/resources'><#F4EEF6>/resources</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>в мир ресурсов</#A99BB5>"
+  - " <click:suggest_command:'/rwtime'><#F4EEF6>/rwtime</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>когда мир ресурсов обновится</#A99BB5>"
+  - ""
+  - "<#F7A1C0>Карта</#F7A1C0>"
+  - " <click:suggest_command:'/marker add '><#F4EEF6>/marker add [название]</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>метка на твоём месте</#A99BB5>"
+  - " <click:suggest_command:'/marker list'><#F4EEF6>/marker list</#F4EEF6></click> <#6F6480>·</#6F6480> <click:suggest_command:'/marker remove '><#F4EEF6>/marker remove [название]</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>твои метки</#A99BB5>"
+  - ""
+  - "<#F7A1C0>Общение и разное</#F7A1C0>"
+  - " <click:suggest_command:'/msg '><#F4EEF6>/msg [ник] [текст]</#F4EEF6></click> <#6F6480>·</#6F6480> <click:suggest_command:'/r '><#F4EEF6>/r [текст]</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>личные сообщения</#A99BB5>"
+  - " <click:suggest_command:'/sit'><#F4EEF6>/sit</#F4EEF6></click> <#6F6480>·</#6F6480> <click:suggest_command:'/lay'><#F4EEF6>/lay</#F4EEF6></click> <#6F6480>·</#6F6480> <click:suggest_command:'/crawl'><#F4EEF6>/crawl</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>сесть, лечь, ползти</#A99BB5>"
+  - " <click:suggest_command:'/skin set '><#F4EEF6>/skin set [ник]</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>сменить скин</#A99BB5>"
+  - " <click:suggest_command:'/trigger ch_toggle'><#F4EEF6>/trigger ch_toggle</#F4EEF6></click> <#6F6480>—</#6F6480> <#A99BB5>координаты на экране</#A99BB5>"
+  - ""
+  - "<#6F6480>  нажми на команду, чтобы подставить её в чат</#6F6480>"
+
+help-op: "<#6F6480>  все команды сервера: /bukkit:help</#6F6480>"

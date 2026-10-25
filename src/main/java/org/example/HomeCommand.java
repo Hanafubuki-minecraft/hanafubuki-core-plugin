@@ -1,9 +1,8 @@
 package org.example;
 
-import org.bukkit.*;
+import org.bukkit.Location;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
-import org.bukkit.boss.BarColor;
 
 public class HomeCommand implements CommandExecutor {
 
@@ -15,24 +14,13 @@ public class HomeCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-
         if (!(sender instanceof Player player)) return true;
-
         Location home = player.getRespawnLocation();
-
         if (home == null) {
-            player.sendMessage("§cУ вас нет точки возрождения!");
+            Msg.send(player, "home.no-bed");
             return true;
         }
-
-        TeleportEffects.start(
-                player,
-                plugin,
-                home,
-                "Телепортация домой",
-                BarColor.BLUE
-        );
-
+        TeleportEffects.start(player, plugin, home, "teleport.bar-home");
         return true;
     }
 }

@@ -46,8 +46,12 @@ mvn package
 
 ## /help для игроков
 
-`/help` и `/?` показывают короткий список команд, которыми игроки реально могут пользоваться (настраивается в `config.yml` → `help.lines`), а не все команды сервера.
+`/help` и `/?` показывают короткий список команд, которыми игроки реально могут пользоваться (настраивается в `messages.yml` → `help`), а не все команды сервера.
 
 ## Скрытые команды
 
 Обычные игроки не видят в Tab `/plugins`, `/version` и команды с префиксом (`minecraft:give`…), а при вводе получают ванильное «неизвестная команда». Опы видят всё. Список — в `config.yml` → `hide-from-non-ops`.
+
+## Тексты
+
+Все тексты — в `plugins/Hanafubuki/messages.yml` (MiniMessage), по [стилю Hanafubuki](https://github.com/Hanafubuki-minecraft/hanafubuki-brand/blob/main/STYLE.md). `/msg` (`/tell`, `/w`, `/m`) и `/r` заменяют ванильный шёпот на оформленный; сообщения о входе и выходе тоже в стиле сервера (`config.yml` → `chat.join-quit`).

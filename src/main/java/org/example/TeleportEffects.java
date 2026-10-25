@@ -1,20 +1,22 @@
 package org.example;
 
+import net.kyori.adventure.bossbar.BossBar;
+import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import org.bukkit.*;
-import org.bukkit.boss.*;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.example.plugin.Teleportation;
 
 public class TeleportEffects {
 
-    public static void start(Player player, Main plugin, Location target, String title, BarColor color) {
+    /** Отсчёт с боссбаром и частицами; сошёл с места больше чем на 3 блока — отмена. */
+    public static void start(Player player, Main plugin, Location target, String titleKey, TagResolver... title) {
 
         Location start = player.getLocation().clone();
         Teleportation tp = new Teleportation();
 
-        BossBar bar = Bukkit.createBossBar("§a" + title, color, BarStyle.SOLID);
-        bar.addPlayer(player);
+        BossBar bar = BossBar.bossBar(Msg.get(titleKey, title), 1f, BossBar.Color.PINK, BossBar.Overlay.PROGRESS);
+        player.showBossBar(bar);
 
         int totalTicks = 40;
 
@@ -26,7 +28,7 @@ public class TeleportEffects {
             public void run() {
 
                 if (!player.isOnline()) {
-                    bar.removeAll();
+                    player.hideBossBar(bar);
                     cancel();
                     return;
                 }
@@ -34,9 +36,9 @@ public class TeleportEffects {
                 double dx = Math.abs(player.getLocation().getX() - start.getX());
                 double dz = Math.abs(player.getLocation().getZ() - start.getZ());
 
-                if (dx > 3 || dz > 3) {
-                    bar.removeAll();
-                    player.sendMessage("§cТелепортация отменена!");
+                if (dx > 3 || dz > 3 || !player.getWorld().equals(start.getWorld())) {
+                    player.hideBossBar(bar);
+                    Msg.send(player, "teleport.cancelled");
                     player.playSound(player, Sound.BLOCK_NOTE_BLOCK_BASS, 1f, 0.5f);
                     cancel();
                     return;
@@ -50,10 +52,10 @@ public class TeleportEffects {
 
                 tick++;
 
-                bar.setProgress(1.0 - (double) tick / totalTicks);
+                bar.progress((float) Math.max(0, 1.0 - (double) tick / totalTicks));
 
                 if (tick >= totalTicks) {
-                    bar.removeAll();
+                    player.hideBossBar(bar);
                     tp.teleport(player, target);
                     cancel();
                 }

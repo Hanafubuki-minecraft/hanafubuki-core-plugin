@@ -1,8 +1,7 @@
 package org.example;
 
 import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.NamedTextColor;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -11,7 +10,6 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerCommandSendEvent;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -25,7 +23,6 @@ public class CommandVisibility implements Listener {
     private Set<String> hidden = new HashSet<>();
     private boolean hideNamespaced = true;
     private boolean customHelp = true;
-    private List<String> helpLines = List.of();
 
     public CommandVisibility(Main plugin) {
         this.plugin = plugin;
@@ -40,7 +37,6 @@ public class CommandVisibility implements Listener {
         hidden = set;
         hideNamespaced = plugin.getConfig().getBoolean("hide-from-non-ops.namespaced", true);
         customHelp = plugin.getConfig().getBoolean("help.enabled", true);
-        helpLines = plugin.getConfig().getStringList("help.lines");
     }
 
     private static boolean isHelp(String label) {
@@ -71,15 +67,14 @@ public class CommandVisibility implements Listener {
 
         if (customHelp && isHelp(label)) {
             e.setCancelled(true);
-            LegacyComponentSerializer amp = LegacyComponentSerializer.legacyAmpersand();
-            for (String line : helpLines) p.sendMessage(amp.deserialize(line));
-            if (p.isOp()) p.sendMessage(amp.deserialize("&8Полный список команд сервера: /bukkit:help"));
+            for (String line : Msg.list("help")) p.sendMessage(Msg.parse(line));
+            if (p.isOp()) Msg.line(p, "help-op");
             return;
         }
 
         if (p.isOp()) return;
         if (!isHidden(label)) return;
         e.setCancelled(true);
-        p.sendMessage(Component.translatable("command.unknown.command", NamedTextColor.RED));
+        p.sendMessage(Component.translatable("command.unknown.command", TextColor.fromHexString("#FF8A9B")));
     }
 }

@@ -1,19 +1,27 @@
 name: Hanafubuki
-version: 1.3
+version: 1.4
 main: org.example.Main
 api-version: "1.21"
 
 commands:
   spawn:
-    description: Spawn teleport
+    description: Teleport to spawn
   home:
-    description: Home teleport
+    description: Teleport home (to your bed)
   tpa:
-    description: Send teleport request
+    description: Ask a player to teleport to them
   tpaaccept:
-    description: Accept teleport request
+    description: Accept a teleport request
+    aliases: [tpaccept, tpyes]
   tpadeny:
-    description: Deny teleport request
+    description: Deny a teleport request
+    aliases: [tpno]
   resources:
     description: Teleport to the resource world
     aliases: [res, ресурсы]
+  msg:
+    description: Private message
+    aliases: [tell, w, whisper, m, pm]
+  reply:
+    description: Reply to the last private message
+    aliases: [r]
