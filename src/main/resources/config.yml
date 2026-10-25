@@ -12,16 +12,30 @@ hide-from-non-ops:
   # Эти команды не-опы не видят в Tab, а при вводе получают «неизвестная команда». Опы видят всё.
   # Остальные админские команды и так защищены правами — Paper сам прячет их от тех, у кого прав нет.
   commands:
+    # служебные команды сервера
     - plugins
     - pl
     - version
     - ver
     - about
     - icanhasbukkit
+    # AuthMe: админка и 2FA (вход, регистрация, смена пароля остаются)
+    - authme
+    - totp
+    - 2fa
+    # Geyser, PlaceholderAPI, TAB
+    - geyser
+    - papi
+    - placeholderapi
+    - tab
+    - btab
+    # прочее
+    - toggleplace
+    - none
   # Прятать команды с префиксом: minecraft:give, bukkit:plugins, paper:… и т.п.
   namespaced: true
   # Все команды этих плагинов не-опы не видят и не могут вызвать (включая //wand, //set и т.п.)
-  plugins: [WorldEdit, FastAsyncWorldEdit, CoreProtect, Chunky]
+  plugins: [WorldEdit, FastAsyncWorldEdit, CoreProtect, Chunky, Geyser-Spigot, PlaceholderAPI, TAB]
 
 help:
   # /help и /? показывают только команды, доступные игроку (опы видят всё), по разделам и со страницами.
