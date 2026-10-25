@@ -54,7 +54,7 @@ gamerules:
 
 # Общий чат. <name> — ник, <bedrock> — отметка для Bedrock-игроков, <message> — сообщение
 chat:
-  format: "<click:suggest_command:'/msg <name> '><hover:show_text:'<muted>Написать <text><name></text> в личку'><bedrock><text><name></text></hover></click> <dim>›</dim> <text><message></text>"
+  format: "<click:suggest_command:'/msg <name> '><hover:show_text:'<muted>Написать <text><name></text> в личку'><bedrock><accent><name></accent></hover></click> <dim>›</dim> <text><message></text>"
   bedrock-mark: "<dim>◇</dim> "
 
 # Книга новичка. Страница — до ~14 строк по ~19 символов. Ссылки: <click:open_url:'https://…'>
