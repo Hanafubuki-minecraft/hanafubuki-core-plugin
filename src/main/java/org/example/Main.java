@@ -17,6 +17,7 @@ public class Main extends JavaPlugin {
         CommandVisibility visibility = new CommandVisibility(this);
         getServer().getPluginManager().registerEvents(visibility, this);
         getServer().getPluginManager().registerEvents(new JoinQuitListener(this), this);
+        getServer().getPluginManager().registerEvents(new SakuraCreepers(this), this);
 
         // Команды: имена, алиасы и включение — в config.yml → commands
         Commands.register(this, "spawn", "Teleport to spawn", null, List.of(), new SpawnCommand(this), null);

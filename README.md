@@ -61,3 +61,7 @@ All texts live in `plugins/Hanafubuki/messages.yml` (MiniMessage) and follow the
 - `config.yml` → `commands`: rename any command, change aliases or disable it (restart to apply).
 - `config.yml` → `style`: the message palette and prefix symbol. Texts in `messages.yml` use semantic tags — `<accent>`, `<text>`, `<muted>`, `<dim>`, `<success>`, `<error>`, `<gold>`, `<symbol>` — so recoloring everything is one edit.
 - `/help` lists only the commands the player can actually run (ops see everything), grouped and paged; groups, usages and descriptions are in `messages.yml` → `help`.
+
+## Sakura creepers
+
+With a configurable chance (`config.yml` → `sakura-creepers.chance`, default 25%) a creeper bursts into a cloud of cherry petals instead of exploding — no damage, no broken blocks.
