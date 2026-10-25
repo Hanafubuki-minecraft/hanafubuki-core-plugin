@@ -44,6 +44,10 @@ The compiled `.jar` will be in `target/`.
 - Paper API 1.21
 - Maven + Shade plugin
 
+## Player /help
+
+`/help` and `/?` show a short list of commands players can actually use (configurable in `config.yml` → `help.lines`), instead of every command on the server.
+
 ## Hidden commands
 
-Non-op players don't see `/plugins`, `/version`, `/help` and namespaced commands (`minecraft:give`…) in tab completion, and typing them gives the vanilla "unknown command" message. Ops see everything. The list is in `config.yml` → `hide-from-non-ops`.
+Non-op players don't see `/plugins`, `/version` and namespaced commands (`minecraft:give`…) in tab completion, and typing them gives the vanilla "unknown command" message. Ops see everything. The list is in `config.yml` → `hide-from-non-ops`.
