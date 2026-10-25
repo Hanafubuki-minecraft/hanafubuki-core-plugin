@@ -69,3 +69,7 @@ With a configurable chance (`config.yml` → `sakura-creepers.chance`, default 2
 ## Admin
 
 `/hanafubuki reload` (`/hf reload`, ops only — `hanafubuki.admin`) reloads `config.yml` and `messages.yml` without a restart: texts, style, `/help`, hidden command lists, sakura creepers. Command names and aliases still need a restart.
+
+## Gamerule sync
+
+All worlds share the same gamerules (`config.yml` → `gamerule-sync`, on by default): on startup the main world's rules are copied everywhere, a `/gamerule` change in any world is applied to all worlds, and newly loaded worlds (e.g. a reset resource world) get them immediately. Event-driven only — no background load.

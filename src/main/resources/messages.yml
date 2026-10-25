@@ -49,6 +49,9 @@ admin:
   version: "<muted>Hanafubuki <text><version></text></muted>"
   usage: "<muted>Использование: <text>/<label> reload</text> <dim>·</dim> <text>/<label> version</text></muted>"
 
+gamerules:
+  synced: "<muted>Правило <text><rule> = <value></text> применено во всех мирах <dim>(<count>)</dim>.</muted>"
+
 join: "<dim><accent><symbol></accent> <name> заходит на сервер</dim>"
 first-join: "<accent><symbol> Встречайте <text><name></text> — впервые на Hanafubuki!</accent>"
 quit: "<dim><symbol> <name> покидает сервер</dim>"

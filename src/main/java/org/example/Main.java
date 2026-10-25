@@ -7,6 +7,7 @@ import java.util.List;
 public class Main extends JavaPlugin {
 
     private CommandVisibility visibility;
+    private GameRuleSync gameRules;
 
     @Override
     public void onEnable() {
@@ -20,6 +21,10 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(visibility, this);
         getServer().getPluginManager().registerEvents(new JoinQuitListener(this), this);
         getServer().getPluginManager().registerEvents(new SakuraCreepers(this), this);
+        gameRules = new GameRuleSync(this);
+        getServer().getPluginManager().registerEvents(gameRules, this);
+        // миры уже загружены к этому моменту — синхронизируем после старта
+        getServer().getScheduler().runTask(this, gameRules::syncAll);
 
         // Команды: имена, алиасы и включение — в config.yml → commands
         Commands.register(this, "spawn", "Teleport to spawn", null, List.of(), new SpawnCommand(this), null);
@@ -47,6 +52,7 @@ public class Main extends JavaPlugin {
         reloadConfig();
         Msg.load(this);
         visibility.reload();
+        gameRules.syncAll();
         for (var p : getServer().getOnlinePlayers()) p.updateCommands();
     }
 }
