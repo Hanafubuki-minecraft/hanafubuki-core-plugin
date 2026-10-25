@@ -79,19 +79,24 @@ public class GameRuleSync implements Listener {
         // значение применяется после события — распространяем на следующем тике
         Bukkit.getScheduler().runTask(plugin, () -> {
             propagating = true;
-            int worlds = 0;
+            int changed = 0;
             try {
                 for (World to : Bukkit.getWorlds()) {
                     if (to.equals(changedWorld)) continue;
-                    if (copy(changedWorld, to, rule)) worlds++;
+                    if (copy(changedWorld, to, rule)) changed++;
                 }
             } finally {
                 propagating = false;
             }
             Object value = changedWorld.getGameRuleValue(rule);
-            plugin.getLogger().info("Gamerule " + rule.getName() + "=" + value + " synced to " + worlds + " worlds");
+            // во скольких мирах правило теперь именно такое (а не сколько пришлось поменять)
+            int worlds = 0;
+            for (World w : Bukkit.getWorlds()) if (value != null && value.equals(w.getGameRuleValue(rule))) worlds++;
+            int total = Bukkit.getWorlds().size();
+            plugin.getLogger().info("Gamerule " + rule.getName() + "=" + value + ": " + worlds + "/" + total + " worlds (" + changed + " changed)");
             if (sender != null) {
-                Msg.send(sender, "gamerules.synced", ph("rule", rule.getName()), ph("value", value), ph("count", worlds));
+                Msg.send(sender, "gamerules.synced", ph("rule", rule.getName()), ph("value", value),
+                        ph("count", worlds), ph("total", total));
             }
         });
     }
