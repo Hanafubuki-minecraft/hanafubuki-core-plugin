@@ -8,6 +8,7 @@ public class Main extends JavaPlugin {
 
     private CommandVisibility visibility;
     private GameRuleSync gameRules;
+    private Dimensions dimensions;
 
     @Override
     public void onEnable() {
@@ -25,6 +26,8 @@ public class Main extends JavaPlugin {
         Guide guide = new Guide(this);
         getServer().getPluginManager().registerEvents(guide, this);
         guide.hookAuthMe();
+        dimensions = new Dimensions(this);
+        getServer().getPluginManager().registerEvents(dimensions, this);
         gameRules = new GameRuleSync(this);
         getServer().getPluginManager().registerEvents(gameRules, this);
         // миры уже загружены к этому моменту — синхронизируем после старта
@@ -60,5 +63,9 @@ public class Main extends JavaPlugin {
         visibility.reload();
         gameRules.syncAll();
         for (var p : getServer().getOnlinePlayers()) p.updateCommands();
+    }
+
+    public Dimensions dimensions() {
+        return dimensions;
     }
 }

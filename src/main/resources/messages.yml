@@ -47,7 +47,7 @@ whisper:
 admin:
   reloaded: "<success>Конфиг и тексты перезагружены.</success> <dim>Имена команд меняются только после рестарта.</dim>"
   version: "<muted>Hanafubuki <text><version></text></muted>"
-  usage: "<muted>Использование: <text>/<label> reload</text> <dim>·</dim> <text>/<label> version</text></muted>"
+  usage: "<muted>Использование: <text>/<label> reload</text> <dim>·</dim> <text>/<label> version</text> <dim>·</dim> <text>/<label> nether|end|eyes on|off</text></muted>"
 
 gamerules:
   synced: "<muted>Правило <text><rule> = <value></text> действует во всех мирах <dim>(<count>/<total>)</dim>.</muted>"
@@ -74,6 +74,16 @@ guide:
     - "<accent>Мир ресурсов</accent>\n\n<muted>Отдельный мир\nдля добычи.</muted>\n\n<text>/resources</text>\n<muted>или вишнёвый\nпортал на спавне.</muted>\n\n<dim>Мир обновляется\nраз в месяц — не\nоставляй там вещи.\nСколько осталось:</dim>\n<text>/rwtime</text>"
     - "<accent>Ещё полезное</accent>\n\n<text>/marker add [имя]</text>\n<muted>метка на карте</muted>\n<text>/msg [ник]</text> <muted>· </muted><text>/r</text>\n<muted>личные сообщения</muted>\n<text>/sit</text> <muted>· </muted><text>/lay</text>\n<muted>сесть, лечь</muted>\n<text>/help</text>\n<muted>все команды</muted>\n<text>/guide</text>\n<muted>эта книга</muted>"
     - "<accent>Что есть</accent>\n\n<muted>Мир ресурсов\nПортал на спавне\nКарта с метками\n/sit и /lay\n1000+ достижений\nVanilla Tweaks\nи много мелочей</muted>\n\n<accent>Хорошей игры!</accent> <symbol>\n<dim>Достижения —\nBACAP, Cavinator1</dim>"
+dimensions:
+  nether-closed: "<muted>Незер пока закрыт.</muted>"
+  end-closed: "<muted>Энд пока закрыт.</muted>"
+  eyes-closed: "<muted>Око Края пока нельзя вставить — портал в Энд закрыт.</muted>"
+  on: "<success>открыт</success>"
+  off: "<error>закрыт</error>"
+  status-nether: "<muted>Незер: <state></muted>"
+  status-end: "<muted>Энд: <state></muted>"
+  status-eyes: "<muted>Око Края в рамку портала: <state></muted>"
+
 join: "<dim><accent><symbol></accent> <name> заходит на сервер</dim>"
 first-join: "<accent><symbol> Встречайте <text><name></text> — впервые на Hanafubuki!</accent>"
 quit: "<dim><symbol> <name> покидает сервер</dim>"

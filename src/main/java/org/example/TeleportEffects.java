@@ -12,6 +12,11 @@ public class TeleportEffects {
     /** Отсчёт с боссбаром и частицами; сошёл с места больше чем на 3 блока — отмена. */
     public static void start(Player player, Main plugin, Location target, String titleKey, TagResolver... title) {
 
+        if (target.getWorld() != null && !plugin.dimensions().allowed(player, target.getWorld())) {
+            plugin.dimensions().sendClosed(player, target.getWorld().getEnvironment());
+            return;
+        }
+
         Location start = player.getLocation().clone();
         Teleportation tp = new Teleportation();
 

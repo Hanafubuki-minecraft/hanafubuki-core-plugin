@@ -78,3 +78,8 @@ All worlds share the same gamerules (`config.yml` → `gamerule-sync`, on by def
 
 - Public chat in the server style: `Name › message`, clicking a name suggests `/msg`, Bedrock players are marked (`messages.yml` → `chat`, `config.yml` → `chat.style`).
 - New players get the guide book after logging in (AuthMe-aware) and it opens automatically; `/guide` (`/rules`) gives it again. Pages are MiniMessage in `messages.yml` → `guide.pages`.
+
+## Closing the Nether and the End
+
+Ops can close travel to the Nether or the End and forbid placing Eyes of Ender into portal frames — instantly, saved to `config.yml` → `dimensions`:
+`/hf nether on|off`, `/hf end on|off`, `/hf eyes on|off` (no argument shows the state). Closed means portals (players, items, mobs), `/tpa` and `/home` into that dimension; leaving it is always possible. Ops bypass unless `ops-bypass: false`.

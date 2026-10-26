@@ -105,6 +105,15 @@ gamerule-sync:
   # Правила, которые НЕ синхронизировать, например [spawnRadius]
   exclude: []
 
+dimensions:
+  # Можно ли попасть в Незер и Энд (порталы, /tpa, /home). Переключать: /hf nether on|off, /hf end on|off
+  nether: true
+  end: true
+  # Можно ли вставлять Око Края в рамку портала в Энд: /hf eyes on|off
+  end-eyes: true
+  # Опы проходят и вставляют всегда
+  ops-bypass: true
+
 # Команды плагина: имя, алиасы, включение. Изменения — после рестарта сервера (/hanafubuki reload их не меняет).
 commands:
   spawn:     { enabled: true, name: spawn,     aliases: [] }
