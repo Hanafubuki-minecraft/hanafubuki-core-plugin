@@ -69,7 +69,7 @@ guide:
     - "<accent>Правила сервера</accent>\n\n<text>1.</text> <muted>Не трогай чужое\nбез разрешения.</muted>\n<text>2.</text> <muted>Без читов, X-ray,\nдюпов. Нашёл баг —\nнапиши админу.</muted>\n<text>3.</text> <muted>Без ферм, от\nкоторых лагает\nсервер.</muted>"
     - "<accent>Правила сервера</accent>\n\n<text>4.</text> <muted>Спавн — общее\nместо: не строй\nна нём дома,\nфермы и свои\nпостройки.</muted>\n<text>5.</text> <muted>Копай в мире\nресурсов.</muted>\n\n<dim>Пусть спавн остаётся\nспавном, а гриф\nоткатывается.</dim>"
     - "<accent>Ваш мир</accent>\n\n<muted>Как жить вместе —\nдоговариваться,\nстроить общие\nгорода и придумывать\nсвои порядки —\nрешаете вы сами.</muted>\n\n<dim>Мы лишь следим,\nчтобы всем было\nуютно.</dim> <accent><symbol></accent>"
-    - "<accent>Ссылки</accent>\n\n<click:open_url:'http://91.214.31.132:8123'><text><u>Карта мира</u></text></click>\n<muted>весь мир на сайте\nи твои метки</muted>\n\n<click:open_url:'https://discord.gg/VSaAnM75a'><text><u>Discord</u></text></click>\n<muted>новости, общение\nи помощь</muted>\n\n<dim>Нажми на ссылку,\nчтобы открыть.</dim>"
+    - "<accent>Ссылки</accent>\n\n<click:open_url:'http://map.hanafubuki.samedy.xyz:8123'><text><u>Карта мира</u></text></click>\n<muted>весь мир на сайте\nи твои метки</muted>\n\n<click:open_url:'https://discord.gg/VSaAnM75a'><text><u>Discord</u></text></click>\n<muted>новости, общение\nи помощь</muted>\n\n<dim>Нажми на ссылку,\nчтобы открыть.</dim>"
     - "<accent>Как ходить</accent>\n\n<text>/spawn</text>\n<muted>на спавн</muted>\n<text>/home</text>\n<muted>к своей кровати</muted>\n<text>/tpa [ник]</text>\n<muted>попроситься к игроку</muted>\n<text>/tpaaccept</text>\n<muted>принять запрос</muted>\n\n<dim>Перед телепортом\nпостой 2 секунды.</dim>"
     - "<accent>Мир ресурсов</accent>\n\n<muted>Отдельный мир\nдля добычи.</muted>\n\n<text>/resources</text>\n<muted>или вишнёвый\nпортал на спавне.</muted>\n\n<dim>Мир обновляется\nраз в месяц — не\nоставляй там вещи.\nСколько осталось:</dim>\n<text>/rwtime</text>"
     - "<accent>Ещё полезное</accent>\n\n<text>/marker add [имя]</text>\n<muted>метка на карте</muted>\n<text>/msg [ник]</text> <muted>· </muted><text>/r</text>\n<muted>личные сообщения</muted>\n<text>/sit</text> <muted>· </muted><text>/lay</text>\n<muted>сесть, лечь</muted>\n<text>/help</text>\n<muted>все команды</muted>\n<text>/guide</text>\n<muted>эта книга</muted>"
@@ -84,8 +84,8 @@ dimensions:
   status-end: "<muted>Энд: <state></muted>"
   status-eyes: "<muted>Око Края в рамку портала: <state></muted>"
 
-join: "<dim><accent><symbol></accent> <name> заходит на сервер</dim>"
-first-join: "<accent><symbol> Встречайте <text><name></text> — впервые на Hanafubuki!</accent>"
+join: "<accent><symbol></accent> <click:suggest_command:'/msg <name> '><hover:show_text:'<muted>Написать <text><name></text> в личку'><text><name></text></hover></click> <muted>заходит на сервер</muted>"
+first-join: "<accent><symbol></accent> <gradient:#F7A1C0:#FFE1EC>Встречайте</gradient> <click:suggest_command:'/msg <name> '><hover:show_text:'<muted>Написать <text><name></text> в личку'><text><name></text></hover></click> <gradient:#FFE1EC:#F7A1C0>— впервые на Hanafubuki!</gradient>"
 quit: "<dim><symbol> <name> покидает сервер</dim>"
 
 unknown-command: "<error>Неизвестная команда. Список доступных — <text>/help</text>.</error>"

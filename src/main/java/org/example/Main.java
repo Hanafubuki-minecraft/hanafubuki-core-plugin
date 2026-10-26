@@ -20,7 +20,9 @@ public class Main extends JavaPlugin {
 
         visibility = new CommandVisibility(this);
         getServer().getPluginManager().registerEvents(visibility, this);
-        getServer().getPluginManager().registerEvents(new JoinQuitListener(this), this);
+        JoinQuitListener joinQuit = new JoinQuitListener(this);
+        getServer().getPluginManager().registerEvents(joinQuit, this);
+        joinQuit.hook();
         getServer().getPluginManager().registerEvents(new SakuraCreepers(this), this);
         getServer().getPluginManager().registerEvents(new ChatStyle(this), this);
         Guide guide = new Guide(this);
